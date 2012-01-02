@@ -1,7 +1,6 @@
 # Exclude all root directories, that doesn't start from point
 */
-!.*/
-!.*/*
+!.**/
 
 # Environment stuff
 .NERDTreeBookmarks
@@ -27,3 +26,7 @@
 .XAuthority
 .rnd
 
+# Useless files
+*.pyc
+*.so
+*/genfiles
