@@ -1,0 +1,51 @@
+" Show breaks of long line
+" Use g + navigate to navigation on big lines
+set showbreak=... 
+
+" Wrap -- set word breaking for long lines
+command! -nargs=* Wrap set wrap linebreak nolist
+
+" Set text width for autoformatting
+" gq -- to autoformat text
+set textwidth=78
+
+" Turn on spell checking. Use z= for correct word
+set spell
+
+" >> indent right current line
+" n>> indent n lines
+" In visual mode using . and u is convenience
+" == -- autoindent current line
+" n== -- autoindent n lines
+" =i} indent lines in {} brackets around current position
+
+
+" Use buffers:
+" + -- marks that buffer is modified
+" h -- buffer is hidden, i.e. contains local changes
+" :bn (bp) -- goes to the next (previous) buffer
+" ctrl+^ -- switch between current buffer and previous one
+" set hidden -- for using bn bp with hidden buffers
+set hidden
+
+" Use windows:
+" Ctrl+w s -- split current file horizontally
+" Ctrl+w v -- split current file vertically
+" :on stay only current window
+
+" Command line window. It is need to use all powerfull of vim in command line.
+" Use q:  or  q/ to go to according window.
+" Ctrl+f to move current command to window
+
+" Correct waht to what in insert mode
+:iabbrev waht what
+
+" Usefull abbrivation for esc
+:inoremap jk <esc>
+
+" Use folding!
+
+!!Exercise!!
+If you still find yourself using the arrow keys to navigate around Vim in normal mode, map them to <nop> to make yourself stop.
+
+If you still use the arrow keys in insert mode, map them to <nop> there too. The right way to use Vim is to get out of insert mode as soon as you can and use normal mode to move around.
