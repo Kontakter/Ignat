@@ -49,3 +49,14 @@ set hidden
 If you still find yourself using the arrow keys to navigate around Vim in normal mode, map them to <nop> to make yourself stop.
 
 If you still use the arrow keys in insert mode, map them to <nop> there too. The right way to use Vim is to get out of insert mode as soon as you can and use normal mode to move around.
+
+
+" See pastie plugin
+http://www.vim.org/scripts/script.php?script_id=1624
+
+" Read eunuch plugin
+https://github.com/tpope/vim-eunuch
+
+" Read features of Tim Pope
+https://github.com/tpope/tpope
+

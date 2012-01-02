@@ -113,49 +113,16 @@ let g:mapleader = ","
 nmap <leader>w :w!<cr>
 
 " Shortcut for set on/off list
-function! ChangeList()
-
-    if &list
-        set nolist
-    else
-        set list
-    endif
-endfunction
-
 map <leader>l :set list!<CR>
 
 " Shortcut for set on/off paste
-function! ChangePaste()
-    if &paste
-        set nopaste
-    else
-        set paste
-    endif
-endfunction
-
-nnoremap <leader>p :call ChangePaste()<CR>
+nnoremap <leader>p :set paste!<CR>
 
 " Shortcut to expand tab
-function! ChangeTab()
-    if &expandtab
-        set noexpandtab
-    else
-        set expandtab
-    endif
-endfunction
-
-nnoremap <leader>t :call ChangeTab()<CR>
+nnoremap <leader>t :set expandtab!<CR>
 
 " Switch spell checking
-function! ChangeSpell()
-    if &spell
-        set nospell
-    else
-        set spell
-    endif
-endfunction
-
-nnoremap <leader>sp :call ChangeSpell()<CR>
+nnoremap <leader>sp :set spell!<CR>
 
 " Shortcut for replace
 nnoremap <leader>r :%s///gc<left><left><left><left>
@@ -177,9 +144,6 @@ nnoremap <silent> <C-Left> <c-w>h
 nnoremap <silent> <C-Up> <c-w>k
 nnoremap <silent> <C-Down> <c-w>j
 
-
-" When vimrc is edited, reload it
-autocmd! BufWritePost .vimrc source ~/.vimrc
 
 " Shortcuts to make program
 set makeprg=make
@@ -210,24 +174,24 @@ function! CmdLine(str)
 endfunction
 
 " From an idea by Michael Naumann
-function! VisualSearch(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
+" function! VisualSearch(direction) range
+"     let l:saved_reg = @"
+"     execute "normal! vgvy"
+" 
+"     let l:pattern = escape(@", '\\/.*$^~[]')
+"     let l:pattern = substitute(l:pattern, "\n$", "", "")
+" 
+"     if a:direction == 'b'
+"         execute "normal ?" . l:pattern . "^M"
+"     elseif a:direction == 'gv'
+"         call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+"     elseif a:direction == 'f'
+"         execute "normal /" . l:pattern . "^M"
+"     endif
+" 
+"     let @/ = l:pattern
+"     let @" = l:saved_reg
+" endfunction
 
 " Do it better way. I want highlight only current word when make search
 " noremap n n:call HighlightNearCursor()<CR>
@@ -239,88 +203,92 @@ endfunction
 " Some plugins
 filetype plugin indent on
 
+" Turn on pathogen plugin
 call pathogen#infect()
 
 if has("autocmd")
-    autocmd FileType make setlocal noexpandtab
+    " When vimrc is edited, reload it
+    autocmd! BufWritePost .vimrc source ~/.vimrc
+    " Show tabs in Makefiles
+    autocmd! FileType make setlocal noexpandtab list
 endif
 
 " Something about encodings and russian language in vim
 " set encoding=utf8
 " set fileencodings=cp1251,utf8
 
-" set keymap=russian-jcukenwin
-" set iminsert=0
-" 
-" map ё `
-" map й q
-" map ц w
-" map у e
-" map к r
-" map е t
-" map н y
-" map г u
-" map ш i
-" map щ o
-" map з p
-" map х [
-" map ъ ]
-" 
-" map ф a
-" map ы s
-" map в d
-" map а f
-" map п g
-" map р h
-" map о j
-" map л k
-" map д l
-" map ж ;
-" map э '
-" 
-" map я z
-" map ч x
-" map с c
-" map м v
-" map и b
-" map т n
-" map ь m
-" map б ,
-" map ю .
-" 
-" map Ё ~
-" map Й Q
-" map Ц W
-" map У E
-" map К R
-" map Е T
-" map Н Y
-" map Г U
-" map Ш I
-" map Щ O
-" map З P
-" map Х {
-" map Ъ }
-" 
-" map Ф A
-" map Ы S
-" map В D
-" map А F
-" map П G
-" map Р H
-" map О J
-" map Л K
-" map Д L
-" map Ж :
-" map Э "
-" 
-" map Я Z
-" map Ч X
-" map С C
-" map М V
-" map И B
-" map Т N
-" map Ь M
-" map Б <
-" map Ю >
+set keymap=russian-jcukenwin
+set iminsert=0
+
+map ё `
+map й q
+map ц w
+map у e
+map к r
+map е t
+map н y
+map г u
+map ш i
+map щ o
+map з p
+map х [
+map ъ ]
+
+map ф a
+map ы s
+map в d
+map а f
+map п g
+map р h
+map о j
+map л k
+map д l
+map ж ;
+map э '
+
+map я z
+map ч x
+map с c
+map м v
+map и b
+map т n
+map ь m
+map б ,
+map ю .
+
+map Ё ~
+map Й Q
+map Ц W
+map У E
+map К R
+map Е T
+map Н Y
+map Г U
+map Ш I
+map Щ O
+map З P
+map Х {
+map Ъ }
+
+map Ф A
+map Ы S
+map В D
+map А F
+map П G
+map Р H
+map О J
+map Л K
+map Д L
+map Ж :
+map Э "
+
+map Я Z
+map Ч X
+map С C
+map М V
+map И B
+map Т N
+map Ь M
+map Б <
+map Ю >
 
