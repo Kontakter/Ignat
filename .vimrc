@@ -44,10 +44,6 @@ set background=dark
 " Turn on file autosave. CTRL+Z apply this to all opened files.
 set autowrite
 
-" Change space on page down and backspace on page up for scrolling
-noremap <Space> <C-D>
-noremap <BS> <C-U>
-
 " Highlight very long lines and trailing spaces
 " highlight BAD_FORMATTING ctermbg=red
 " autocmd Syntax * syntax match BAD_FORMATTING /\s\+$\|\t\|.\{79\}/ containedin=ALL
@@ -292,4 +288,14 @@ map Ь M
 map Б <
 map Ю >
 
+" user filetype file
+if exists("did_load_filetypes")
+  finish
+endif
 
+augroup filetypedetect
+
+au! BufNewFile,BufRead *.applescript   setf applescript
+au! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
+
+augroup END

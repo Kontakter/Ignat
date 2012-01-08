@@ -36,6 +36,9 @@ if [[ "$platform" == "Darwin" ]]; then
     # MacPorts Installer addition on 2011-06-26_at_12:43:19: adding an appropriate PATH variable for use with MacPorts.
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
     # Finished adapting your PATH environment variable for use with MacPorts.
+    
+    # Add xld command line util to PATH
+    export PATH=/Users/ignat/Packages/xld-20110802:$PATH
 
     # alias to macvim
     alias macvim=/Applications/MacVim.app/Contents/MacOS/Vim

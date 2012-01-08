@@ -23,4 +23,6 @@ dpkg --get-selections
 # Cron files
 /etc/cron.*
 
-
+# Mac OS
+# Reindex spotlight
+sudo mdutil -E /
