@@ -1,5 +1,5 @@
 path=`pwd`
-for x in `ls -a . | egrep -v "\.$" | egrep -v "init.sh" | egrep -v "Makefile"`
+for x in `ls -a . | egrep -v "\.$" | egrep -v "init.sh" | egrep -v "Makefile" | egrep -v ".git/"`
 do
     if [ -f ~/$x ]; then
         echo "File $x already exists"
