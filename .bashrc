@@ -56,6 +56,10 @@ if [[ "$platform" == "Darwin" ]]; then
     export LSCOLORS=Exfxcxdxbxegedabagacad
     alias ls="ls -FG"
 
+    export OLYMP_EXAMPLE="/Users/ignat/Olympiads/example"
+    alias olymp_copy="cp '${OLYMP_EXAMPLE}/Makefile' '${OLYMP_EXAMPLE}/main.cpp' ."
+    #alias olymp="olymp_copy && vim -c "
+
 elif [[ "$platform" == "Linux" ]]; then
     # make less more friendly for non-text input files, see lesspipe(1)
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"

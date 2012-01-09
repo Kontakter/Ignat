@@ -10,7 +10,6 @@ set nocompatible
 set autoindent
 set smartindent
 
-
 " All indents are 4-spaces. Don't use tab.
 set tabstop=4
 set shiftwidth=4
@@ -89,49 +88,37 @@ set scrolloff=7
 " Autoread file when it changes
 set autoread
 
-" Add executable mode to bash and python scripts
-function! SetExecutableMode()
-    if getline(1) =~ "^#!"
-        if getline(1) =~ "/bin/"
-            silent !chmod a+x <afile>
-        endif
-    endif
-endfunction
-
-autocmd BufWritePost * call SetExecutableMode()
-
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
 " Shortcut for saving
-nmap <leader>w :w!<cr>
+nmap <leader>w :w!<CR>
 
 " Shortcut for set on/off list
-map <leader>l :set list!<CR>
+map <leader>sl :set list!<CR>
 
 " Shortcut for set on/off paste
-nnoremap <leader>p :set paste!<CR>
+nnoremap <leader>sp :set paste!<CR>
 
 " Shortcut to expand tab
-nnoremap <leader>t :set expandtab!<CR>
+nnoremap <leader>st :set expandtab!<CR>
 
 " Switch spell checking
-nnoremap <leader>sp :set spell!<CR>
+nnoremap <leader>ss :set spell!<CR>
 
 " Shortcut for replace
 nnoremap <leader>r :%s///gc<left><left><left><left>
 
 " Awesome search by ack
-nnoremap <leader>s :! ack <right>
+nnoremap <leader>ac :! ack <right>
 
 " Run Gundo plugin for look at the undo history
 nnoremap <leader>u :GundoToggle<CR>
 
 " Delete trailing whitespaces
 nnoremap <leader>en :%s/\s\+$//e<CR>
-
 
 " Map ctrl+arrow to navigate split windows.
 " At first we need aliases to redirect command through ssh
@@ -143,17 +130,33 @@ nnoremap <silent> <C-Down> <c-w>j
 
 " Shortcuts to make program
 set makeprg=make
-map <C-B> :w<CR>:make<CR>
-imap <C-B> <ESC>:w<CR>:make<CR>
+noremap <C-B> :w<CR>:make<CR>
+inoremap <C-B> <ESC>:w<CR>:make<CR>
 
 " Use space and backspace to navigate by page-down and page-up
 noremap <Space> <C-D>
 noremap <BS> <C-U>
 
-" Turn on nice python highlight
-let python_highlight_all = 1
-au FileType python syn keyword pythonDecorator True None False self
+" Olymp shortcuts
+function! OpenInputOutput(name)
+    if a:name ==? "input"
+        let input = "input.txt"
+        let output = "output.txt"
+    else
+        let input = a:name . ".in"
+        let output = a:name . ".out"
+    endif
+    execute "botright 7split " . output
+    write
+    execute "vsplit " . input
+    write
+    execute "normal! \<C-W>\<Up>"
+endfunction
 
+nnoremap <leader>oi :call OpenInputOutput('')<left><left>
+
+" Execute latex
+nnoremap <leader>tex :! pdflatex % && open %<."pdf"<CR>
 
 " In visual mode when you press * or # to search for the current selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
@@ -163,12 +166,27 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
+" Add executable mode to bash and python scripts
+function! SetExecutableMode()
+    if getline(1) =~ "^#!"
+        if getline(1) =~ "/bin/"
+            silent !chmod a+x <afile>
+        endif
+    endif
 endfunction
 
+autocmd BufWritePost * call SetExecutableMode()
+
+" Turn on nice python highlight
+" let python_highlight_all = 1
+au FileType python syn keyword pythonDecorator True None False self
+
+" Function! CmdLine(str)
+"     exe "menu Foo.Bar :" . a:str
+"     emenu Foo.Bar
+"     unmenu Foo
+" Endfunction
+" 
 " From an idea by Michael Naumann
 " function! VisualSearch(direction) range
 "     let l:saved_reg = @"

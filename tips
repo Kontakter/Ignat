@@ -26,3 +26,6 @@ dpkg --get-selections
 # Mac OS
 # Reindex spotlight
 sudo mdutil -E /
+
+# iTunes delete music from library through playlist
+Option + Command + Delete
