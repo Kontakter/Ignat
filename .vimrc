@@ -47,9 +47,6 @@ set autowrite
 " highlight BAD_FORMATTING ctermbg=red
 " autocmd Syntax * syntax match BAD_FORMATTING /\s\+$\|\t\|.\{79\}/ containedin=ALL
 
-" Allow to copy text to clibboard using cc command
-map cc :w !pbcopy
-
 " Allow backspace to delete all symbols
 set backspace=indent,eol,start
 
@@ -93,6 +90,9 @@ set autoread
 let mapleader = ","
 let g:mapleader = ","
 
+" Use instead Esc
+inoremap jk <Esc><right>
+
 " Shortcut for saving
 nmap <leader>w :w!<CR>
 
@@ -127,7 +127,6 @@ nnoremap <silent> <C-Left> <c-w>h
 nnoremap <silent> <C-Up> <c-w>k
 nnoremap <silent> <C-Down> <c-w>j
 
-
 " Shortcuts to make program
 set makeprg=make
 noremap <C-B> :w<CR>:make<CR>
@@ -136,6 +135,20 @@ inoremap <C-B> <ESC>:w<CR>:make<CR>
 " Use space and backspace to navigate by page-down and page-up
 noremap <Space> <C-D>
 noremap <BS> <C-U>
+
+" Paste from clipboard
+function! PasteFromClipboard()
+    let p = &paste
+    set paste
+    execute ":r !pbpaste"
+    let &paste = p
+endfunction
+
+noremap <leader>p :call PasteFromClipboard()<CR>
+inoremap <leader>p :call PasteFromClipboard()<CR>
+
+" Allow to copy text to clibboard using cc command
+noremap cc :w !pbcopy<CR><CR>
 
 " Olymp shortcuts
 function! OpenInputOutput(name)
