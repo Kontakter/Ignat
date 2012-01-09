@@ -317,3 +317,4 @@ au! BufNewFile,BufRead *.applescript   setf applescript
 au! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
 
 augroup END
+

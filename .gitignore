@@ -1,36 +1,12 @@
-# Exclude all root directories, that doesn't start from point
-*/
-!.*
-!.**
-!.**/
-!.**/*
-!.**/**/*
-
 # Environment stuff
-.NERDTreeBookmarks
-.bash_history
-.viminfo
-.lesshst
 .subversion/
-.config/
-.ssh/id_rsa*
-.ssh/known_hosts
+.svn/
 
 # Vim pathogen
 .vim/autoload/pathogen.vim
 
 # Mac OS specific
-.yandex
-.macports
-.matplotlib
-.dropbox
-.cups
-.dvdcss
-.account
-.XAuthority
-.rnd
 .DS_Store
-.local
 
 # Useless files
 *.pyc
