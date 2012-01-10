@@ -148,6 +148,8 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 alias g='git'
+alias v='vim'
+alias gp='git pkg'
 alias gclean='git clean -d -x -n'
 
 # aliases to tar extract and compress
