@@ -59,6 +59,8 @@ if [[ "$platform" == "Darwin" ]]; then
     export LSCOLORS=Exfxcxdxbxegedabagacad
     alias ls="ls -FG"
 
+    export GITHUB="/Users/ignat/Documents/github"
+
     export OLYMP_EXAMPLE="/Users/ignat/Olympiads/example"
     alias olymp_copy="cp '${OLYMP_EXAMPLE}/Makefile' '${OLYMP_EXAMPLE}/main.cpp' ."
     #alias olymp="olymp_copy && vim -c "
