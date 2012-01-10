@@ -121,7 +121,6 @@ nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>en :%s/\s\+$//e<CR>
 
 " Map ctrl+arrow to navigate split windows.
-" At first we need aliases to redirect command through ssh
 nnoremap <silent> <C-Right> <c-w>l
 nnoremap <silent> <C-Left> <c-w>h
 nnoremap <silent> <C-Up> <c-w>k
@@ -332,5 +331,15 @@ if s:os_type ==# "Darwin"
     map Ь M
     map Б <
     map Ю >
+else
+    " Redirect arrows throw ssh
+    map <ESC>[1;5D <C-Left>
+    map <ESC>[1;5C <C-Right>
+    map <ESC>[1;5A <C-Up>
+    map <ESC>[1;5B <C-Down>
+    map! <ESC>[1;5D <C-Left>
+    map! <ESC>[1;5C <C-Right>
+    map! <ESC>[1;5A <C-Up>
+    map! <ESC>[1;5B <C-Down>
 endif
 
