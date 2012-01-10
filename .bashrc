@@ -17,6 +17,9 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# Write comment to this command
+shopt -s cdspell
+
 # colorfull diff for subversion
 sdiff() {
     svn diff --no-diff-deleted $@ | colordiff | less -SR
@@ -109,6 +112,8 @@ elif [[ "$platform" == "Linux" ]]; then
         alias egrep='egrep --color=auto'
     fi
 
+
+
     # Variables for use debian
     export EMAIL="ignat@yandex-team.ru"
     export DEBFULLNAME="Ignat Kolesnichenko"
@@ -117,6 +122,7 @@ elif [[ "$platform" == "Linux" ]]; then
     # Aliases for apt-get
     alias agu="sudo apt-get update"
     alias agi="sudo apt-get install"
+    alias acp="apt-cache policy"
 
     # Some popular directories
     export PYMOD="/home/ignat/code/maps/pymod/"
@@ -138,6 +144,7 @@ alias l='ls -CF'
 if [ -f ~/.git-completion.bash ]; then
     source ~/.git-completion.bash
 fi
+
 alias g='git'
 alias gclean='git clean -d -x -n'
 
