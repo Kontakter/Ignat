@@ -17,6 +17,8 @@
     ci = commit
     st = status
     br = branch
+    psh = push origin master
+    pl = pull origin master
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 
 [branch "master"]

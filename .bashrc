@@ -126,6 +126,9 @@ elif [[ "$platform" == "Linux" ]]; then
     alias agi="sudo apt-get install"
     alias acp="apt-cache policy"
 
+    # alias for ack
+    alias ack="ack-grep"
+
     # Some popular directories
     export PYMOD="/home/ignat/code/maps/pymod/"
     export API="/home/ignat/code/maps/pymod/yandex/maps/analyzer/api/"
