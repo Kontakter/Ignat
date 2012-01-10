@@ -1,3 +1,5 @@
+vim -o -- to open several files in windows
+
 " Show breaks of long line
 " Use g + navigate to navigation on big lines
 set showbreak=... 

@@ -1,3 +1,6 @@
+" Section: options
+" {{{
+
 " This setting prevents vim from emulating the original vi's
 " bugs and limitations.
 set nocompatible
@@ -85,6 +88,17 @@ set scrolloff=7
 " Autoread file when it changes
 set autoread
 
+" Set autoedit buffers
+set hidden
+
+" Fold settings
+set foldmethod=marker
+
+" }}}
+
+" Section: mappings
+" {{{
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -135,8 +149,12 @@ set makeprg=make
 noremap <C-B> :w<CR>:make<CR>
 inoremap <C-B> <ESC>:w<CR>:make<CR>
 
+" Shortcuts for buffers
+noremap <leader>bn :bnext<CR>
+noremap <leader>bp :bprevious<CR>
+
 " Use space and backspace to navigate by page-down and page-up
-noremap <Space> <C-D>
+nnoremap <Space> <C-D>
 noremap <BS> <C-U>
 
 " Paste from clipboard
@@ -182,6 +200,10 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
+" }}}
+
+" Section: autocmd and plugins
+" {{{
 " Add executable mode to bash and python scripts
 function! SetExecutableMode()
     if getline(1) =~ "^#!"
@@ -256,6 +278,10 @@ au! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
 
 augroup END
 
+" }}}
+
+" Section: system-depend options
+" {{{
 let s:os_type = system( 'uname -o' ) 
 if s:os_type ==# "Darwin"
     " Something about encodings and russian language in vim
@@ -346,4 +372,4 @@ else
     map! <ESC>[1;5A <C-Up>
     map! <ESC>[1;5B <C-Down>
 endif
-
+" }}}
