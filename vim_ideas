@@ -1,3 +1,9 @@
+# open many files in separate buffers
+vim -b *.*
+
+# replace in all buffers
+:argdo %s/old_text/new_text/gce | update
+
 vim -o -- to open several files in windows
 
 " ZZ - quit and save

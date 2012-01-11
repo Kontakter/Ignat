@@ -1,21 +1,5 @@
-==== VIM ====
-:Sex -- open explorer
-:set foldmethod=syntax 
-
-# for editing big files 
-(zo, zc)
-
-# Some shortcuts
-C-a C-x -- incr/dexr data
-C-c = esc
-
-open files -- vim -b *.*
-# replace in all files 
-:argdo %s/old_text/new_text/gce | update
-
-# bash util
+# space optimization util
 ncdu
-
 
 # Show list of all packages
 dpkg --get-selections
@@ -29,3 +13,9 @@ sudo mdutil -E /
 
 # iTunes delete music from library through playlist
 Option + Command + Delete
+
+# Debugging in bash:
+bash -x your_script.sh
+
+# find has exclude option
+find . -not -name
