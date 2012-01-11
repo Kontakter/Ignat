@@ -125,24 +125,24 @@ nnoremap <leader>ss :set spell!<CR>
 " Shortcut for replace
 nnoremap <leader>r :%s///gc<left><left><left><left>
 
+" Shortcut for replace
+nnoremap <leader>r :%s///gc<left><left><left><left>
+
 " Awesome search by ack
 nnoremap <leader>ac :! ack <right>
 
-" Run Gundo plugin for look at the undo history
-nnoremap <leader>u :GundoToggle<CR>
-
 " Delete trailing whitespaces
-nnoremap <leader>en :%s/\s\+$//e<CR>
+nnoremap <leader>tr :%s/\s\+$//e<CR>
 
-" Map ctrl+arrow and ctrl+vimarrow to navigate split windows.
-nnoremap <silent> <C-Right> <c-w>l
-nnoremap <silent> <C-Left> <c-w>h
-nnoremap <silent> <C-Up> <c-w>k
-nnoremap <silent> <C-Down> <c-w>j
-nnoremap <silent> <C-l> <c-w>l
-nnoremap <silent> <C-h> <c-w>h
-nnoremap <silent> <C-k> <c-w>k
-nnoremap <silent> <C-j> <c-w>j
+" Paste from register 0, where yank puts
+nnoremap <leader>m "0p
+inoremap <leader>m "0pa
+
+" Allow to copy text to clibboard using cc command
+noremap cc :w !pbcopy<CR><CR>
+
+" Run Gundo plugin for look at the undo history
+" nnoremap <leader>u :GundoToggle<CR>
 
 " Shortcuts to make program
 set makeprg=make
@@ -157,6 +157,16 @@ noremap <leader>bp :bprevious<CR>
 nnoremap <Space> <C-D>
 noremap <BS> <C-U>
 
+" Map ctrl+arrow and ctrl+vimarrow to navigate split windows.
+nnoremap <silent> <C-Right> <c-w>l
+nnoremap <silent> <C-Left> <c-w>h
+nnoremap <silent> <C-Up> <c-w>k
+nnoremap <silent> <C-Down> <c-w>j
+nnoremap <silent> <C-l> <c-w>l
+nnoremap <silent> <C-h> <c-w>h
+nnoremap <silent> <C-k> <c-w>k
+nnoremap <silent> <C-j> <c-w>j
+
 " Paste from clipboard
 function! PasteFromClipboard()
     let p = &paste
@@ -167,9 +177,6 @@ endfunction
 
 noremap <leader>p :call PasteFromClipboard()<CR>
 inoremap <leader>p :call PasteFromClipboard()<CR>
-
-" Allow to copy text to clibboard using cc command
-noremap cc :w !pbcopy<CR><CR>
 
 " Olymp shortcuts
 function! OpenInputOutput(name)
@@ -197,8 +204,8 @@ vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+" vnoremap <silent> gv :call VisualSearch('gv')<CR>
+" map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " }}}
 

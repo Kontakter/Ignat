@@ -1,5 +1,13 @@
 vim -o -- to open several files in windows
 
+" ZZ - quit and save
+
+" %s//123/g replace last search
+" Search highlight:
+" set hls
+" set nohls 
+
+
 " Show breaks of long line
 " Use g + navigate to navigation on big lines
 set showbreak=... 
