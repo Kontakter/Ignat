@@ -94,6 +94,9 @@ set hidden
 " Fold settings
 set foldmethod=marker
 
+" Allow to use aliases from vim :!
+" set shellcmdflag=-ic
+
 " }}}
 
 " Section: mappings
@@ -380,3 +383,6 @@ else
     map! <ESC>[1;5B <C-Down>
 endif
 " }}}
+
+" Section: abbrevations
+iabbrev pacakges packages

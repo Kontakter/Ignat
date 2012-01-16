@@ -10,6 +10,10 @@ export HISTCONTROL=ignoreboth
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# correct autocomplete of environment variables
+shopt -s cdable_vars
+complete -v -F _cd $nospace $filenames cd
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
