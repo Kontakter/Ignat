@@ -142,6 +142,12 @@ elif [[ "$platform" == "Linux" ]]; then
     # Analyzer variables
     export ANALYZER="/home/ignat/code/maps/fastcgi/analyzer/"
     export ANALYZER_MODE=static
+
+    # tmux completion and restore
+    if [ -f ~/.tmux-completion.bash ]; then
+        source ~/.tmux-completion.bash
+    fi
+    alias tm="tmux attach-session -t 0"
 fi
 
 # usefull aliases for ls

@@ -1,0 +1,39 @@
+#!/bin/sh -eu
+# -e stops if some command returned non-zero
+# -u stops if used unset variable
+
+msg() { echo "$@"; }
+
+die() { echo "build: $*" >&2; exit 1; }
+
+
+len() {
+    echo $OPTIONS | wc -w
+}
+
+at() {
+    echo $1 | awk -v i="$2" '{print $i}'
+}
+
+# integer cycle
+for (( i = 1 ; i <= `len $OPTIONS`; i++ )); do ...; done;
+
+# usage example
+usage() { cat <<__USAGE__ >&2 && exit 1
+    build init repo-with-packages
+    build remove
+    build install package [path_to_package] (it is built without git-pkg if you provide path to package)
+__USAGE__
+}
+
+# reading arguments
+CMD=$1; shift || usage
+
+# if example
+if [ "$CMD" = "init" ]; then
+    repo=$1; shift || usage
+elif [ "$CMD" = "install" ]; then
+    package=$1; shift || usage
+fi
+
+# Use man [ for read about checks
