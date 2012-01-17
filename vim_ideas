@@ -76,3 +76,25 @@ https://github.com/tpope/vim-eunuch
 " Read features of Tim Pope
 https://github.com/tpope/tpope
 
+" Messages and log
+echom "Some message"
+messages
+
+" Repalce some set by setlocal
+" Add autogroup to autocmd
+" Start to use highlight search
+
+" Substitute  (:%s///)
+\v -- very magic mode.
+. -- any character
+[] -- any character
+^ -- not character 
+Example: [^'] -- any character^ but not single quote
+? -- search backward
+
+" Commandline
+ctrl-p ctrl-n navigate throw history
+
+" External commands
+:silent !{cmd} -- eliminates the need to hit enter after the command is done
+:r !{cmd} Puts the output of $cmd into the current buffer

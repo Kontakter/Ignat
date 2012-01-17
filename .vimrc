@@ -13,6 +13,9 @@ set nocompatible
 set autoindent
 set smartindent
 
+" Turn on indentation
+filetype plugin indent on
+
 " All indents are 4-spaces. Don't use tab.
 set tabstop=4
 set shiftwidth=4
@@ -92,7 +95,11 @@ set autoread
 set hidden
 
 " Fold settings
-set foldmethod=marker
+set foldmethod=indent
+set nofoldenable
+    
+" Add cp1251 and utf8 to supported fileencodings
+" set fileencodings+=utf8,cp1251
 
 " Allow to use aliases from vim :!
 " set shellcmdflag=-ic
@@ -113,26 +120,32 @@ inoremap jk <Esc><right>
 " Shortcut for saving
 nmap <leader>w :w!<CR>
 
+" Shortcut for quit
+nmap <leader>q :q<CR>
+
 " Shortcut for set on/off list
-map <leader>sl :set list!<CR>
+map <leader>sl :setlocal list!<CR>
 
 " Shortcut for set on/off paste
-nnoremap <leader>sp :set paste!<CR>
+nnoremap <leader>sp :setlocal paste!<CR>
 
 " Shortcut to expand tab
-nnoremap <leader>st :set expandtab!<CR>
+nnoremap <leader>st :setlocal expandtab!<CR>
 
 " Switch spell checking
-nnoremap <leader>ss :set spell!<CR>
+nnoremap <leader>ss :setlocal spell!<CR>
+
+" Switch highlightning
+nnoremap <leader>sh :setlocal hlsearch!<CR>
 
 " Shortcut for replace
 nnoremap <leader>r :%s///gc<left><left><left><left>
 
-" Shortcut for replace
-nnoremap <leader>r :%s///gc<left><left><left><left>
+" Awesome search by ack. Use :Ack instead from ack-plugin
+" nnoremap <leader>ac :! ack <right>
 
-" Awesome search by ack
-nnoremap <leader>ac :! ack <right>
+" Open vimrc
+noremap <leader>vm :vsplit ~/.vimrc<CR>
 
 " Delete trailing whitespaces
 nnoremap <leader>tr :%s/\s\+$//e<CR>
@@ -146,11 +159,6 @@ noremap cc :w !pbcopy<CR><CR>
 
 " Run Gundo plugin for look at the undo history
 " nnoremap <leader>u :GundoToggle<CR>
-
-" Shortcuts to make program
-set makeprg=make
-noremap <C-B> :w<CR>:make<CR>
-inoremap <C-B> <ESC>:w<CR>:make<CR>
 
 " Shortcuts for buffers
 noremap <leader>bn :bnext<CR>
@@ -181,8 +189,18 @@ endfunction
 noremap <leader>p :call PasteFromClipboard()<CR>
 inoremap <leader>p :call PasteFromClipboard()<CR>
 
+" Shortcuts to make program
+set makeprg=make
+command! -nargs=* Make make <args> | botright cwindow 3
+noremap <C-B> :w<CR>:Make<CR>
+inoremap <C-B> <ESC>:w<CR>:Make<CR>
+
+noremap <leader>o[ :cnext<CR>
+noremap <leader>o] :cprevious<CR>
+
 " Olymp shortcuts
 function! OpenInputOutput(name)
+    " %s/freopen/
     if a:name ==? "input"
         let input = "input.txt"
         let output = "output.txt"
@@ -192,8 +210,10 @@ function! OpenInputOutput(name)
     endif
     execute "botright 7split " . output
     write
+    set winfixheight
     execute "vsplit " . input
     write
+    set winfixheight
     execute "normal! \<C-W>\<Up>"
 endfunction
 
@@ -203,12 +223,12 @@ nnoremap <leader>oi :call OpenInputOutput('')<left><left>
 nnoremap <leader>tex :! pdflatex % && open %<."pdf"<CR>
 
 " In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
+" vnoremap <silent> * :call VisualSearch('f')<CR>
+" vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
 " vnoremap <silent> gv :call VisualSearch('gv')<CR>
-" map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+" noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " }}}
 
@@ -223,11 +243,40 @@ function! SetExecutableMode()
     endif
 endfunction
 
-autocmd BufWritePost * call SetExecutableMode()
+" Turn on pathogen plugin
+call pathogen#infect()
 
-" Turn on nice python highlight
-" let python_highlight_all = 1
-au FileType python syn keyword pythonDecorator True None False self
+if has("autocmd")
+    augroup executable
+        autocmd! BufWritePost * call SetExecutableMode()
+    augroup END
+
+    augroup vimrc
+        " When vimrc is edited, reload it
+        autocmd!
+        autocmd BufWritePost .vimrc source ~/.vimrc
+        autocmd BufNewFile,BufRead .vimrc set foldmethod=marker | set foldenable
+    augroup END
+
+    augroup makefile
+        " Show tabs in Makefiles
+        autocmd! FileType make setlocal noexpandtab list
+    augroup END
+
+    " user filetype file
+    if exists("did_load_filetypes")
+      finish
+    endif
+
+    augroup filetypedetect
+        autocmd! BufNewFile,BufRead *.applescript   setf applescript
+        autocmd! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
+    augroup END
+
+    " Turn on nice python highlight
+    " let python_highlight_all = 1
+    autocmd FileType python syn keyword pythonDecorator True None False self
+endif
 
 " Function! CmdLine(str)
 "     exe "menu Foo.Bar :" . a:str
@@ -262,41 +311,14 @@ au FileType python syn keyword pythonDecorator True None False self
 "     match Todo /\k*\%#\k*/
 " endfunction
 
-" Some plugins
-filetype plugin indent on
-
-" Turn on pathogen plugin
-call pathogen#infect()
-
-if has("autocmd")
-    " When vimrc is edited, reload it
-    autocmd! BufWritePost .vimrc source ~/.vimrc
-    " Show tabs in Makefiles
-    autocmd! FileType make setlocal noexpandtab list
-endif
-
-
-" user filetype file
-if exists("did_load_filetypes")
-  finish
-endif
-
-augroup filetypedetect
-
-au! BufNewFile,BufRead *.applescript   setf applescript
-au! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
-
-augroup END
-
 " }}}
 
 " Section: system-depend options
 " {{{
-let s:os_type = system( 'uname -o' ) 
-if s:os_type ==# "Darwin"
+let s:os_type = system('uname') 
+if match(s:os_type, "Darwin") != -1
     " Something about encodings and russian language in vim
     " set encoding=utf8
-    " set fileencodings=cp1251,utf8
     set keymap=russian-jcukenwin
     set iminsert=0
 
@@ -371,7 +393,7 @@ if s:os_type ==# "Darwin"
     map Ь M
     map Б <
     map Ю >
-else
+elseif match(s:os_type, "Linux") != -1
     " Redirect arrows throw ssh
     map <ESC>[1;5D <C-Left>
     map <ESC>[1;5C <C-Right>
@@ -385,4 +407,6 @@ endif
 " }}}
 
 " Section: abbrevations
+" {{{
 iabbrev pacakges packages
+" }}}

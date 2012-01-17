@@ -67,7 +67,7 @@ if [[ "$platform" == "Darwin" ]]; then
 
     export OLYMP_EXAMPLE="/Users/ignat/Olympiads/example"
     alias olymp_copy="cp '${OLYMP_EXAMPLE}/Makefile' '${OLYMP_EXAMPLE}/main.cpp' ."
-    #alias olymp="olymp_copy && vim -c "
+    alias olymp="olymp_copy && vim main.cpp"
 
 elif [[ "$platform" == "Linux" ]]; then
     # make less more friendly for non-text input files, see lesspipe(1)
