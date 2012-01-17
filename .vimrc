@@ -97,7 +97,7 @@ set hidden
 " Fold settings
 set foldmethod=indent
 set nofoldenable
-    
+
 " Add cp1251 and utf8 to supported fileencodings
 " set fileencodings+=utf8,cp1251
 
@@ -153,9 +153,6 @@ nnoremap <leader>tr :%s/\s\+$//e<CR>
 " Paste from register 0, where yank puts
 nnoremap <leader>m "0p
 inoremap <leader>m "0pa
-
-" Allow to copy text to clibboard using cc command
-noremap cc :w !pbcopy<CR><CR>
 
 " Run Gundo plugin for look at the undo history
 " nnoremap <leader>u :GundoToggle<CR>
@@ -232,91 +229,13 @@ nnoremap <leader>tex :! pdflatex % && open %<."pdf"<CR>
 
 " }}}
 
-" Section: autocmd and plugins
-" {{{
-" Add executable mode to bash and python scripts
-function! SetExecutableMode()
-    if getline(1) =~ "^#!"
-        if getline(1) =~ "/bin/"
-            silent !chmod a+x <afile>
-        endif
-    endif
-endfunction
-
-" Turn on pathogen plugin
-call pathogen#infect()
-
-if has("autocmd")
-    augroup executable
-        autocmd! BufWritePost * call SetExecutableMode()
-    augroup END
-
-    augroup vimrc
-        " When vimrc is edited, reload it
-        autocmd!
-        autocmd BufWritePost .vimrc source ~/.vimrc
-        autocmd BufNewFile,BufRead .vimrc set foldmethod=marker | set foldenable
-    augroup END
-
-    augroup makefile
-        " Show tabs in Makefiles
-        autocmd! FileType make setlocal noexpandtab list
-    augroup END
-
-    " user filetype file
-    if exists("did_load_filetypes")
-      finish
-    endif
-
-    augroup filetypedetect
-        autocmd! BufNewFile,BufRead *.applescript   setf applescript
-        autocmd! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
-    augroup END
-
-    " Turn on nice python highlight
-    " let python_highlight_all = 1
-    autocmd FileType python syn keyword pythonDecorator True None False self
-endif
-
-" Function! CmdLine(str)
-"     exe "menu Foo.Bar :" . a:str
-"     emenu Foo.Bar
-"     unmenu Foo
-" Endfunction
-" 
-" From an idea by Michael Naumann
-" function! VisualSearch(direction) range
-"     let l:saved_reg = @"
-"     execute "normal! vgvy"
-" 
-"     let l:pattern = escape(@", '\\/.*$^~[]')
-"     let l:pattern = substitute(l:pattern, "\n$", "", "")
-" 
-"     if a:direction == 'b'
-"         execute "normal ?" . l:pattern . "^M"
-"     elseif a:direction == 'gv'
-"         call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-"     elseif a:direction == 'f'
-"         execute "normal /" . l:pattern . "^M"
-"     endif
-" 
-"     let @/ = l:pattern
-"     let @" = l:saved_reg
-" endfunction
-
-" Do it better way. I want highlight only current word when make search
-" noremap n n:call HighlightNearCursor()<CR>
-"  
-" function! HighlightNearCursor()
-"     match Todo /\k*\%#\k*/
-" endfunction
-
-" }}}
-
 " Section: system-depend options
 " {{{
-let s:os_type = system('uname') 
+let s:os_type = system('uname')
 if match(s:os_type, "Darwin") != -1
+    " Allow to copy text to clibboard using cc command
+    noremap cc :w !pbcopy<CR><CR>
+
     " Something about encodings and russian language in vim
     " set encoding=utf8
     set keymap=russian-jcukenwin
@@ -410,3 +329,85 @@ endif
 " {{{
 iabbrev pacakges packages
 " }}}
+
+" Section: autocmd and plugins
+" {{{
+" Add executable mode to bash and python scripts
+function! SetExecutableMode()
+    if getline(1) =~ "^#!"
+        if getline(1) =~ "/bin/"
+            silent !chmod a+x <afile>
+        endif
+    endif
+endfunction
+
+" Turn on pathogen plugin
+call pathogen#infect()
+
+if has("autocmd")
+    augroup executable
+        autocmd! BufWritePost * call SetExecutableMode()
+    augroup END
+
+    augroup vimrc
+        " When vimrc is edited, reload it
+        autocmd!
+        autocmd BufWritePost .vimrc source ~/.vimrc
+        autocmd BufNewFile,BufRead .vimrc set foldmethod=marker | set foldenable
+    augroup END
+
+    augroup makefile
+        " Show tabs in Makefiles
+        autocmd! FileType make setlocal noexpandtab list
+    augroup END
+
+    " user filetype file
+    if exists("did_load_filetypes")
+      finish
+    endif
+
+    augroup filetypedetect
+        autocmd! BufNewFile,BufRead *.applescript   setf applescript
+        autocmd! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
+    augroup END
+
+    " Turn on nice python highlight
+    " let python_highlight_all = 1
+    autocmd FileType python syn keyword pythonDecorator True None False self
+endif
+
+" Function! CmdLine(str)
+"     exe "menu Foo.Bar :" . a:str
+"     emenu Foo.Bar
+"     unmenu Foo
+" Endfunction
+"
+" From an idea by Michael Naumann
+" function! VisualSearch(direction) range
+"     let l:saved_reg = @"
+"     execute "normal! vgvy"
+"
+"     let l:pattern = escape(@", '\\/.*$^~[]')
+"     let l:pattern = substitute(l:pattern, "\n$", "", "")
+"
+"     if a:direction == 'b'
+"         execute "normal ?" . l:pattern . "^M"
+"     elseif a:direction == 'gv'
+"         call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+"     elseif a:direction == 'f'
+"         execute "normal /" . l:pattern . "^M"
+"     endif
+"
+"     let @/ = l:pattern
+"     let @" = l:saved_reg
+" endfunction
+
+" Do it better way. I want highlight only current word when make search
+" noremap n n:call HighlightNearCursor()<CR>
+"
+" function! HighlightNearCursor()
+"     match Todo /\k*\%#\k*/
+" endfunction
+
+" }}}
+

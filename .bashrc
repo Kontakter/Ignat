@@ -10,10 +10,6 @@ export HISTCONTROL=ignoreboth
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# correct autocomplete of environment variables
-shopt -s cdable_vars
-complete -v -F _cd $nospace $filenames cd
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -70,6 +66,10 @@ if [[ "$platform" == "Darwin" ]]; then
     alias olymp="olymp_copy && vim main.cpp"
 
 elif [[ "$platform" == "Linux" ]]; then
+    # correct autocomplete of environment variables
+    shopt -s cdable_vars
+    complete -v -F _cd $nospace $filenames cd
+
     # make less more friendly for non-text input files, see lesspipe(1)
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
