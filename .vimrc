@@ -143,6 +143,8 @@ nnoremap <leader>r :%s///gc<left><left><left><left>
 
 " Awesome search by ack. Use :Ack instead from ack-plugin
 " nnoremap <leader>ac :! ack <right>
+nnoremap <C-X> :Ack <cword><CR>
+inoremap <C-X> <ESC>:Ack <cword><CR>
 
 " Open vimrc
 noremap <leader>vm :vsplit ~/.vimrc<CR>
@@ -313,6 +315,7 @@ if match(s:os_type, "Darwin") != -1
     map Б <
     map Ю >
 elseif match(s:os_type, "Linux") != -1
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
     " Redirect arrows throw ssh
     map <ESC>[1;5D <C-Left>
     map <ESC>[1;5C <C-Right>

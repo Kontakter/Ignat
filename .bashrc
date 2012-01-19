@@ -142,6 +142,9 @@ elif [[ "$platform" == "Linux" ]]; then
     # Analyzer variables
     export ANALYZER="/home/ignat/code/maps/fastcgi/analyzer/"
     export ANALYZER_MODE=static
+    
+    # Analyzer variables
+    export YT="/home/ignat/yt/yt/ytlib"
 
     # tmux completion and restore
     if [ -f ~/.tmux-completion.bash ]; then
