@@ -67,8 +67,8 @@ if [[ "$platform" == "Darwin" ]]; then
 
 elif [[ "$platform" == "Linux" ]]; then
     # correct autocomplete of environment variables
-    shopt -s cdable_vars
-    complete -v -F _cd $nospace $filenames cd
+    # shopt -s cdable_vars
+    # complete -v -F _cd $nospace $filenames cd
 
     # make less more friendly for non-text input files, see lesspipe(1)
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
