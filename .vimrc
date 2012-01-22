@@ -164,7 +164,7 @@ noremap <leader>bn :bnext<CR>
 noremap <leader>bp :bprevious<CR>
 
 " Use space and backspace to navigate by page-down and page-up
-nnoremap <Space> <C-D>
+noremap <Space> <C-D>
 noremap <BS> <C-U>
 
 " Map ctrl+arrow and ctrl+vimarrow to navigate split windows.
@@ -194,8 +194,10 @@ command! -nargs=* Make make <args> | botright cwindow 3
 noremap <C-B> :w<CR>:Make<CR>
 inoremap <C-B> <ESC>:w<CR>:Make<CR>
 
+" Shortcuts fir quickfix window
 noremap <leader>o[ :cnext<CR>
 noremap <leader>o] :cprevious<CR>
+noremap <leader>oo :cclose<CR>
 
 " Olymp shortcuts
 function! OpenInputOutput(name)
