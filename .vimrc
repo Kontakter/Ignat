@@ -99,7 +99,7 @@ set foldmethod=indent
 set nofoldenable
 
 " Add cp1251 and utf8 to supported fileencodings
-" set fileencodings+=utf8,cp1251
+" set fileencodings=cp1251,utf8
 
 " Allow to use aliases from vim :!
 " set shellcmdflag=-ic
@@ -241,7 +241,6 @@ if match(s:os_type, "Darwin") != -1
     noremap cc :w !pbcopy<CR><CR>
 
     " Something about encodings and russian language in vim
-    " set encoding=utf8
     set keymap=russian-jcukenwin
     set iminsert=0
 
@@ -350,6 +349,9 @@ endfunction
 call pathogen#infect()
 
 if has("autocmd")
+    " Cpp11 syntax
+    autocmd BufNewFile,BufRead *.cpp set syntax=cpp11
+    
     augroup executable
         autocmd! BufWritePost * call SetExecutableMode()
     augroup END

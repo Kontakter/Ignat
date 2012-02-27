@@ -98,3 +98,9 @@ ctrl-p ctrl-n navigate throw history
 " External commands
 :silent !{cmd} -- eliminates the need to hit enter after the command is done
 :r !{cmd} Puts the output of $cmd into the current buffer
+
+" Add shortcuts to python:
+0. Search existed
+1. Help
+2. Main
+3. Test

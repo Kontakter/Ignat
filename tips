@@ -19,3 +19,8 @@ bash -x your_script.sh
 
 # find has exclude option
 find . -not -name
+
+# iTerm2
+# Cmd-F  for search 
+# Cmd ;  for autocompletetion from history
+# Cmd+Opt+B  for replay mode
