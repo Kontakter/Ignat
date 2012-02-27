@@ -39,7 +39,7 @@ if [[ "$platform" == "Darwin" ]]; then
     # MacPorts Installer addition on 2011-06-26_at_12:43:19: adding an appropriate PATH variable for use with MacPorts.
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
     # Finished adapting your PATH environment variable for use with MacPorts.
-    
+
     # Add xld command line util to PATH
     export PATH=/Users/ignat/Packages/xld-20110802:$PATH
 
@@ -48,7 +48,12 @@ if [[ "$platform" == "Darwin" ]]; then
 
     # Setting PATH for EPD_free-7.1-2
     # The orginal version is saved in .bash_profile.pysave
-    PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+    #PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+    #export PATH
+
+    # Setting PATH for Python 2.7
+    # The orginal version is saved in .bash_profile.pysave
+    PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
     export PATH
 
     # Use the last version of g++
@@ -60,6 +65,8 @@ if [[ "$platform" == "Darwin" ]]; then
     alias ls="ls -FG"
 
     export GITHUB="/Users/ignat/Documents/github"
+
+    export WORK="/Users/ignat/Documents/Work"
 
     export OLYMP_EXAMPLE="/Users/ignat/Olympiads/example"
     alias olymp_copy="cp '${OLYMP_EXAMPLE}/Makefile' '${OLYMP_EXAMPLE}/main.cpp' ."
@@ -142,7 +149,7 @@ elif [[ "$platform" == "Linux" ]]; then
     # Analyzer variables
     export ANALYZER="/home/ignat/code/maps/fastcgi/analyzer/"
     export ANALYZER_MODE=static
-    
+
     # Analyzer variables
     export YT="/home/ignat/yt/yt/ytlib"
 
