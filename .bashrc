@@ -77,6 +77,8 @@ elif [[ "$platform" == "Linux" ]]; then
     # shopt -s cdable_vars
     # complete -v -F _cd $nospace $filenames cd
 
+    PATH="/home/ignat/clang/build/Release+Asserts/bin:$PATH"
+
     # make less more friendly for non-text input files, see lesspipe(1)
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
