@@ -57,12 +57,15 @@ if [[ "$platform" == "Darwin" ]]; then
     export PATH
 
     # Use the last version of g++
-    export CXX=$(which g++-mp-4.6)
-    export CC=$(which gcc-mp-4.6)
+    # export CXX=$(which g++-mp-4.6)
+    # export CC=$(which gcc-mp-4.6)
+    export CXX=$(which g++)
+    export CC=$(which gcc)
 
     # Colorize output of ls
     export LSCOLORS=Exfxcxdxbxegedabagacad
     alias ls="ls -FG"
+    alias c++="g++-mp-4.6 -std=gnu++0x -O2 -I/opt/local/include"
 
     export GITHUB="/Users/ignat/Documents/github"
 

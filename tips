@@ -24,3 +24,11 @@ find . -not -name
 # Cmd-F  for search 
 # Cmd ;  for autocompletetion from history
 # Cmd+Opt+B  for replay mode
+
+# C++ symbols
+# Display symbols of object file. Read man for understand symbols
+nm file.o
+
+# Encrypt symbol to function name
+echo "symbol" || c++fint
+
