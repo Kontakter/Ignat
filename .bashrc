@@ -52,9 +52,7 @@ if [[ "$platform" == "Darwin" ]]; then
     #export PATH
 
     # Setting PATH for Python 2.7
-    # The orginal version is saved in .bash_profile.pysave
-    PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-    export PATH
+    export PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH"
 
     # Use the last version of g++
     # export CXX=$(which g++-mp-4.6)
@@ -65,6 +63,7 @@ if [[ "$platform" == "Darwin" ]]; then
     # Colorize output of ls
     export LSCOLORS=Exfxcxdxbxegedabagacad
     alias ls="ls -FG"
+
     alias c++="g++-mp-4.6 -std=gnu++0x -O2 -I/opt/local/include"
 
     export GITHUB="/Users/ignat/Documents/github"

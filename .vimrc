@@ -118,13 +118,13 @@ let g:mapleader = ","
 inoremap jk <Esc><right>
 
 " Shortcut for saving
-nmap <leader>w :w!<CR>
+nnoremap <leader>w :w!<CR>
 
 " Shortcut for quit
-nmap <leader>q :q<CR>
+nnoremap <leader>q :q<CR>
 
 " Shortcut for set on/off list
-map <leader>sl :setlocal list!<CR>
+nnoremap <leader>sl :setlocal list!<CR>
 
 " Shortcut for set on/off paste
 nnoremap <leader>sp :setlocal paste!<CR>
@@ -222,6 +222,9 @@ nnoremap <leader>oi :call OpenInputOutput('')<left><left>
 
 " Execute latex
 nnoremap <leader>tex :! pdflatex % && open %<."pdf"<CR>
+
+" Compile haskell
+nnoremap <leader>hs :! ghc --make %<CR>
 
 " In visual mode when you press * or # to search for the current selection
 " vnoremap <silent> * :call VisualSearch('f')<CR>
