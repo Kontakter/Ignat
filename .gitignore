@@ -10,5 +10,11 @@
 
 # Useless files
 *.pyc
+*genfiles/
+*.d
+
+# Static and dynamic libraries
 *.so
-*/genfiles
+*.so.*
+*.o
+*.a
