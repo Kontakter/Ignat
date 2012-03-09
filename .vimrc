@@ -115,7 +115,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Use instead Esc
-inoremap jk <Esc><right>
+" inoremap jk <Esc><right>
 
 " Shortcut for saving
 nnoremap <leader>w :w!<CR>
@@ -191,13 +191,16 @@ inoremap <leader>p :call PasteFromClipboard()<CR>
 " Shortcuts to make program
 set makeprg=make
 command! -nargs=* Make make <args> | botright cwindow 3
+command! -nargs=* MakeTest make test <args> | botright cwindow 3
 noremap <C-B> :w<CR>:Make<CR>
 inoremap <C-B> <ESC>:w<CR>:Make<CR>
+noremap <leader>tt :w<CR>:MakeTest<CR>
+inoremap <leader>tt <ESC>:w<CR>:MakeTest<CR>
 
 " Shortcuts fir quickfix window
-noremap <leader>o[ :cnext<CR>
-noremap <leader>o] :cprevious<CR>
-noremap <leader>oo :cclose<CR>
+noremap <leader>[ :cnext<CR>
+noremap <leader>] :cprevious<CR>
+noremap <leader>o :cclose<CR>
 
 " Olymp shortcuts
 function! OpenInputOutput(name)
@@ -353,8 +356,8 @@ call pathogen#infect()
 
 if has("autocmd")
     " Cpp11 syntax
-    autocmd BufNewFile,BufRead *.cpp set syntax=cpp11
-    
+    autocmd! BufNewFile,BufRead *.cpp set syntax=cpp11
+
     augroup executable
         autocmd! BufWritePost * call SetExecutableMode()
     augroup END
