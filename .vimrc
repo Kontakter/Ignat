@@ -190,17 +190,17 @@ inoremap <leader>p :call PasteFromClipboard()<CR>
 
 " Shortcuts to make program
 set makeprg=make
-command! -nargs=* Make make <args> | botright cwindow 3
-command! -nargs=* MakeTest make test <args> | botright cwindow 3
+command! -nargs=* Make make <args> | botright cwindow 5
+command! -nargs=* MakeTest make test <args> | botright cwindow 7
 noremap <C-B> :w<CR>:Make<CR>
 inoremap <C-B> <ESC>:w<CR>:Make<CR>
 noremap <leader>tt :w<CR>:MakeTest<CR>
 inoremap <leader>tt <ESC>:w<CR>:MakeTest<CR>
 
 " Shortcuts fir quickfix window
-noremap <leader>[ :cnext<CR>
-noremap <leader>] :cprevious<CR>
-noremap <leader>o :cclose<CR>
+nnoremap <leader>] :cnext<CR>
+nnoremap <leader>[ :cprevious<CR>
+nnoremap <leader>o :cclose<CR>
 
 " Olymp shortcuts
 function! OpenInputOutput(name)
