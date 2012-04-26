@@ -102,7 +102,7 @@ set nofoldenable
 " Exclude include files from search space
 set complete-=i
 
-set clipboard=unnamed
+"set clipboard=unnamed
 
 " Add cp1251 and utf8 to supported fileencodings
 " set fileencodings=cp1251,utf8
@@ -161,17 +161,6 @@ nnoremap <leader>tr :%s/\s\+$//e<CR>
 " Paste from register 0, where yank puts
 nnoremap <leader>m "0p
 inoremap <leader>m "0pa
-
-" Paste from clipboard
-function! PasteFromClipboard()
-    let p = &paste
-    set paste
-    execute "normal! \"+p"
-    let &paste = p
-endfunction
-
-noremap <leader>p :call PasteFromClipboard()<CR>
-inoremap <leader>p :call PasteFromClipboard()<CR>
 
 " Run Gundo plugin for look at the undo history
 " nnoremap <leader>u :GundoToggle<CR>
@@ -237,6 +226,17 @@ nnoremap <leader>tex :! pdflatex % && open %<."pdf"<CR>
 
 " Compile haskell
 nnoremap <leader>hs :! ghc --make %<CR>
+    
+" Paste from clipboard
+function! PasteFromClipboard()
+    let p = &paste
+    set paste
+    execute "normal! \"+p"
+    let &paste = p
+endfunction
+
+noremap <leader>p :call PasteFromClipboard()<CR>
+inoremap <leader>p :call PasteFromClipboard()<CR>
 
 " In visual mode when you press * or # to search for the current selection
 " vnoremap <silent> * :call VisualSearch('f')<CR>
@@ -331,6 +331,7 @@ if match(s:os_type, "Darwin") != -1
     map Б <
     map Ю >
 
+
 elseif match(s:os_type, "Linux") != -1
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
     " Redirect arrows throw ssh
@@ -342,7 +343,9 @@ elseif match(s:os_type, "Linux") != -1
     map! <ESC>[1;5C <C-Right>
     map! <ESC>[1;5A <C-Up>
     map! <ESC>[1;5B <C-Down>
+    
 endif
+    
 " }}}
 
 " Section: abbrevations

@@ -32,3 +32,5 @@ nm file.o
 # Encrypt symbol to function name
 echo "symbol" || c++fint
 
+# Determine library dependencies in OSX
+otool -L 
