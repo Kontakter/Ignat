@@ -31,6 +31,7 @@ export EDITOR=vim
 # git stuff
 if [ -f ~/.git-completion.bash ]; then
     source ~/.git-completion.bash
+    complete -o default -o nospace -F _git g
 fi
 
 # usefull aliases for ls

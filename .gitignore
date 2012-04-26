@@ -10,6 +10,7 @@
 
 # Useless files
 *.pyc
+*.egg-info/
 *genfiles/
 *.d
 

@@ -98,6 +98,12 @@ set hidden
 set foldmethod=indent
 set nofoldenable
 
+" Autocompletion properties
+" Exclude include files from search space
+set complete-=i
+
+set clipboard=unnamed
+
 " Add cp1251 and utf8 to supported fileencodings
 " set fileencodings=cp1251,utf8
 
@@ -156,6 +162,17 @@ nnoremap <leader>tr :%s/\s\+$//e<CR>
 nnoremap <leader>m "0p
 inoremap <leader>m "0pa
 
+" Paste from clipboard
+function! PasteFromClipboard()
+    let p = &paste
+    set paste
+    execute "normal! \"+p"
+    let &paste = p
+endfunction
+
+noremap <leader>p :call PasteFromClipboard()<CR>
+inoremap <leader>p :call PasteFromClipboard()<CR>
+
 " Run Gundo plugin for look at the undo history
 " nnoremap <leader>u :GundoToggle<CR>
 
@@ -177,17 +194,6 @@ nnoremap <silent> <C-h> <c-w>h
 nnoremap <silent> <C-k> <c-w>k
 nnoremap <silent> <C-j> <c-w>j
 
-" Paste from clipboard
-function! PasteFromClipboard()
-    let p = &paste
-    set paste
-    execute ":r !pbpaste"
-    let &paste = p
-endfunction
-
-noremap <leader>p :call PasteFromClipboard()<CR>
-inoremap <leader>p :call PasteFromClipboard()<CR>
-
 " Shortcuts to make program
 set makeprg=make
 command! -nargs=* Make make <args> | botright cwindow 5
@@ -201,6 +207,9 @@ inoremap <leader>tt <ESC>:w<CR>:MakeTest<CR>
 nnoremap <leader>] :cnext<CR>
 nnoremap <leader>[ :cprevious<CR>
 nnoremap <leader>o :cclose<CR>
+
+" Fix syntax highlightning
+nnoremap <leader>hg :syntax sync fromstart<CR>
 
 " Olymp shortcuts
 function! OpenInputOutput(name)
@@ -321,6 +330,7 @@ if match(s:os_type, "Darwin") != -1
     map Ь M
     map Б <
     map Ю >
+
 elseif match(s:os_type, "Linux") != -1
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
     " Redirect arrows throw ssh
