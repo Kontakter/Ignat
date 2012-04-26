@@ -102,8 +102,6 @@ set nofoldenable
 " Exclude include files from search space
 set complete-=i
 
-"set clipboard=unnamed
-
 " Add cp1251 and utf8 to supported fileencodings
 " set fileencodings=cp1251,utf8
 
@@ -227,13 +225,6 @@ nnoremap <leader>tex :! pdflatex % && open %<."pdf"<CR>
 " Compile haskell
 nnoremap <leader>hs :! ghc --make %<CR>
     
-" Paste from clipboard
-function! PasteFromClipboard()
-    let p = &paste
-    set paste
-    execute "normal! \"+p"
-    let &paste = p
-endfunction
 
 noremap <leader>p :call PasteFromClipboard()<CR>
 inoremap <leader>p :call PasteFromClipboard()<CR>
@@ -330,7 +321,14 @@ if match(s:os_type, "Darwin") != -1
     map Ь M
     map Б <
     map Ю >
-
+    
+    "Paste from clipboard
+    function! PasteFromClipboard()
+        let p = &paste
+        set paste
+        execute ":r !pbpaste"
+        let &paste = p
+    endfunction
 
 elseif match(s:os_type, "Linux") != -1
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
@@ -344,6 +342,13 @@ elseif match(s:os_type, "Linux") != -1
     map! <ESC>[1;5A <C-Up>
     map! <ESC>[1;5B <C-Down>
     
+    " Paste from clipboard
+    function! PasteFromClipboard()
+        let p = &paste
+        set paste
+        execute "normal! \"+p"
+        let &paste = p
+    endfunction
 endif
     
 " }}}
