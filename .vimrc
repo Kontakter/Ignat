@@ -108,6 +108,11 @@ set complete-=i
 " Allow to use aliases from vim :!
 " set shellcmdflag=-ic
 
+
+" Autocompletion menu colors
+highlight Pmenu ctermfg=DarkGreen ctermbg=DarkGrey
+highlight PmenuSel ctermfg=Green ctermbg=DarkBlue
+
 " }}}
 
 " Section: mappings
@@ -195,7 +200,7 @@ nnoremap <leader>] :cnext<CR>
 nnoremap <leader>[ :cprevious<CR>
 nnoremap <leader>o :cclose<CR>
 
-" Fix syntax highlightning
+" Fix syntax highlighting
 nnoremap <leader>hg :syntax sync fromstart<CR>
 
 " Olymp shortcuts
@@ -224,7 +229,7 @@ nnoremap <leader>tex :! pdflatex % && open %<."pdf"<CR>
 
 " Compile haskell
 nnoremap <leader>hs :! ghc --make %<CR>
-    
+
 
 noremap <leader>p :call PasteFromClipboard()<CR>
 inoremap <leader>p :call PasteFromClipboard()<CR>
@@ -321,7 +326,7 @@ if match(s:os_type, "Darwin") != -1
     map Ь M
     map Б <
     map Ю >
-    
+
     "Paste from clipboard
     function! PasteFromClipboard()
         let p = &paste
@@ -341,7 +346,7 @@ elseif match(s:os_type, "Linux") != -1
     map! <ESC>[1;5C <C-Right>
     map! <ESC>[1;5A <C-Up>
     map! <ESC>[1;5B <C-Down>
-    
+
     " Paste from clipboard
     function! PasteFromClipboard()
         let p = &paste
@@ -350,7 +355,7 @@ elseif match(s:os_type, "Linux") != -1
         let &paste = p
     endfunction
 endif
-    
+
 " }}}
 
 " Section: abbrevations
@@ -384,7 +389,11 @@ if has("autocmd")
         " When vimrc is edited, reload it
         autocmd!
         autocmd BufWritePost .vimrc source ~/.vimrc
-        autocmd BufNewFile,BufRead .vimrc set foldmethod=marker | set foldenable
+        autocmd BufNewFile,BufRead ~/.vimrc set foldmethod=marker | set foldenable
+    augroup END
+
+    augroup algorithms
+        autocmd BufNewFile,BufRead */github/Algorithms/*.h set foldmethod=marker | set foldenable
     augroup END
 
     augroup makefile

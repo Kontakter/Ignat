@@ -36,4 +36,9 @@ elif [ "$CMD" = "install" ]; then
     package=$1; shift || usage
 fi
 
+# multiplication of float numbers:
+a="123.2"
+b="1.1"
+echo $a*$b | bc
+
 # Use man [ for read about checks

@@ -74,9 +74,6 @@ if [[ "$platform" == "Darwin" ]]; then
     # Add xld command line util to PATH
     export PATH=/Users/ignat/Packages/xld-20110802:$PATH
 
-    # alias to macvim
-    alias macvim=/Applications/MacVim.app/Contents/MacOS/Vim
-
     # Setting PATH for EPD_free-7.1-2
     # The orginal version is saved in .bash_profile.pysave
     #PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
