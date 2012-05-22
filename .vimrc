@@ -167,7 +167,7 @@ inoremap <C-X> <ESC>:Ack <cword><CR>
 noremap <leader>vm :vsplit ~/.vimrc<CR>
 
 " Delete trailing whitespaces
-nnoremap <leader>tr :%s/\s\+$//e<CR>
+nnoremap <leader>dtr :%s/\s\+$//e<CR>
 
 " Paste from register 0, where yank puts
 nnoremap <leader>m "0p
@@ -206,7 +206,7 @@ inoremap <leader>tt <ESC>:w<CR>:MakeTest<CR>
 " Shortcuts fir quickfix window
 nnoremap <leader>] :cnext<CR>
 nnoremap <leader>[ :cprevious<CR>
-nnoremap <leader>o :cclose<CR>
+" nnoremap <leader>o :cclose<CR>
 
 " Fix syntax highlighting
 nnoremap <leader>hg :syntax sync fromstart<CR>
@@ -258,6 +258,8 @@ noremap <leader>fp :echo expand('%:p')<CR>
 " When you press gv you vimgrep after the selected text
 " vnoremap <silent> gv :call VisualSearch('gv')<CR>
 " noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+
+nnoremap <silent> <leader>o :CommandT<CR>
 
 " }}}
 

@@ -177,6 +177,7 @@ elif [[ "$platform" == "Linux" ]]; then
     export API="/home/ignat/code/maps/pymod/yandex/maps/analyzer/api/"
     export MR="/home/ignat/code/maps/pymod/yandex/maps/mapreduce/"
     export QUALITY="/home/ignat/code/maps/fastcgi/analyzer/quality/"
+    export PART="/home/ignat/code/maps/fastcgi/analyzer/graph_partition/"
 
     # Analyzer variables
     export ANALYZER="/home/ignat/code/maps/fastcgi/analyzer/"
