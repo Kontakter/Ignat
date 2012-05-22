@@ -113,6 +113,12 @@ set complete-=i
 highlight Pmenu ctermfg=DarkGreen ctermbg=DarkGrey
 highlight PmenuSel ctermfg=Green ctermbg=DarkBlue
 
+" Search tags files in all up directories
+set tags=./tags;/
+
+" Colorscheme for MacVim
+" :colorscheme torte
+
 " }}}
 
 " Section: mappings
@@ -128,9 +134,11 @@ let g:mapleader = ","
 
 " Shortcut for saving
 nnoremap <leader>w :w!<CR>
+nnoremap <leader>ц :w!<CR>
 
 " Shortcut for quit
 nnoremap <leader>q :q<CR>
+nnoremap <leader>й :q<CR>
 
 " Shortcut for set on/off list
 nnoremap <leader>sl :setlocal list!<CR>
@@ -233,6 +241,15 @@ nnoremap <leader>hs :! ghc --make %<CR>
 
 noremap <leader>p :call PasteFromClipboard()<CR>
 inoremap <leader>p :call PasteFromClipboard()<CR>
+
+" Ctags split in vertical window
+nnoremap <C-0> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+inoremap <C-0> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+nnoremap <C-9> :tab split <CR>:exec("tag ".expand("<cword>"))<CR>
+inoremap <C-9> :tab split <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Show full path
+noremap <leader>fp :echo expand('%:p')<CR>
 
 " In visual mode when you press * or # to search for the current selection
 " vnoremap <silent> * :call VisualSearch('f')<CR>

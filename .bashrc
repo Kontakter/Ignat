@@ -83,10 +83,10 @@ if [[ "$platform" == "Darwin" ]]; then
     export PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH"
 
     # Use the last version of g++
-    # export CXX=$(which g++-mp-4.6)
-    # export CC=$(which gcc-mp-4.6)
-    export CXX=$(which g++)
-    export CC=$(which gcc)
+    export CXX=$(which g++-mp-4.6)
+    export CC=$(which gcc-mp-4.6)
+    #export CXX=$(which g++)
+    #export CC=$(which gcc)
 
     # Colorize output of ls
     export LSCOLORS=Exfxcxdxbxegedabagacad
@@ -103,6 +103,8 @@ if [[ "$platform" == "Darwin" ]]; then
     alias olymp_tc_copy="cp '${OLYMP_EXAMPLE}/Makefile' . && cp '${OLYMP_EXAMPLE}/tc.cpp' main.cpp"
     alias olymp="olymp_copy && vim main.cpp"
     alias olymp_tc="olymp_tc_copy && vim main.cpp"
+
+    export YT="/Users/ignat/YT/yt/ytlib"
 
 elif [[ "$platform" == "Linux" ]]; then
     # correct autocomplete of environment variables
