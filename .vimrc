@@ -119,7 +119,6 @@ set tags=./tags;/
 
 " Colorscheme for MacVim
 " :colorscheme torte
-
 " }}}
 
 " Section: mappings
@@ -212,6 +211,9 @@ nnoremap <leader>[ :cprevious<CR>
 " Fix syntax highlighting
 nnoremap <leader>hg :syntax sync fromstart<CR>
 
+" Command-T shortcut
+nnoremap <silent> <leader>l :CommandT<CR>
+
 " Olymp shortcuts
 function! OpenInputOutput(name)
     " %s/freopen/
@@ -260,7 +262,13 @@ noremap <leader>fp :echo expand('%:p')<CR>
 " vnoremap <silent> gv :call VisualSearch('gv')<CR>
 " noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
-nnoremap <silent> <leader>o :CommandT<CR>
+function! MakeYT()
+    execute "! cd /home/ignat/yt/build && "
+                \ "make -j9 && "
+                \ " ./bin/unittester --gtest_filter=TChangeLogTest.*"
+endfunction
+
+nnoremap <leader>yt :call MakeYT()<CR>
 
 " }}}
 
