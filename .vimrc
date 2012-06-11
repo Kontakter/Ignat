@@ -103,7 +103,8 @@ set nofoldenable
 set complete-=i
 
 " Add cp1251 and utf8 to supported fileencodings
-" set fileencodings=cp1251,utf8
+set fileencodings=utf-8,cp1251
+set encoding=utf-8
 
 " Allow to use aliases from vim :!
 " set shellcmdflag=-ic
