@@ -47,7 +47,7 @@ alias gclean='git clean -d -x -n'
 # aliases to tar extract and compress
 alias tc='tar cvzf'
 alias tx='tar xvzf'
-    
+
 
 platform=`uname`
 
@@ -187,9 +187,18 @@ elif [[ "$platform" == "Linux" ]]; then
     export YT="/home/ignat/yt/yt/ytlib"
 
     # tmux completion and restore
+    refresh_tmux() {
+        if [[ -n $TMUX ]]; then
+            NEW_SSH_AUTH_SOCK=`tmux showenv | grep ^SSH_AUTH_SOCK | cut -d = -f 2`
+            if [[ -n $NEW_SSH_AUTH_SOCK ]] && [[ -S $NEW_SSH_AUTH_SOCK ]]; then
+                SSH_AUTH_SOCK=$NEW_SSH_AUTH_SOCK
+            fi
+        fi
+    }
     if [ -f ~/.tmux-completion.bash ]; then
         source ~/.tmux-completion.bash
     fi
     alias tm="tmux attach-session -t 0"
+    alias rtm="refresh_tmux"
 fi
 

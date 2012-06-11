@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+git submodule init && git submodule update
+
 path=`pwd`
 for x in `find . | egrep -v "\.$" | egrep -v "*\.git/" | egrep -v "*\.git$"  | egrep -v "init.sh" | egrep -v "Makefile"`
 do

@@ -119,6 +119,11 @@ set tags=./tags;/
 
 " Colorscheme for MacVim
 " :colorscheme torte
+
+" Add path for find in vim
+set path+=/home/ignat/yt/
+set path+=/home/ignat/yt/yt/
+
 " }}}
 
 " Section: mappings
@@ -170,8 +175,8 @@ noremap <leader>vm :vsplit ~/.vimrc<CR>
 nnoremap <leader>dtr :%s/\s\+$//e<CR>
 
 " Paste from register 0, where yank puts
-nnoremap <leader>m "0p
-inoremap <leader>m "0pa
+nnoremap <leader>m "0P
+inoremap <leader>m "0Pa
 
 " Run Gundo plugin for look at the undo history
 " nnoremap <leader>u :GundoToggle<CR>
@@ -202,6 +207,10 @@ noremap <C-B> :w<CR>:Make<CR>
 inoremap <C-B> <ESC>:w<CR>:Make<CR>
 noremap <leader>tt :w<CR>:MakeTest<CR>
 inoremap <leader>tt <ESC>:w<CR>:MakeTest<CR>
+
+" Shortcut to open file under cursor
+nnoremap gh :vsp<CR>gf
+nnoremap gb :sp<CR>gf
 
 " Shortcuts fir quickfix window
 nnoremap <leader>] :cnext<CR>
@@ -263,12 +272,54 @@ noremap <leader>fp :echo expand('%:p')<CR>
 " noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 function! MakeYT()
-    execute "! cd /home/ignat/yt/build && "
-                \ "make -j9 && "
-                \ " ./bin/unittester --gtest_filter=TChangeLogTest.*"
+    make -C /home/ignat/yt/build -j9 | botright cwindow 7
+    " ADD HERE RUNNING UNITTESTS
+    "echom v:shell_error
+    :"set makeprg="make -C /home/ignat/yt/build/Makefile"
+    "execute '! cd /home/ignat/yt/build && '.
+    "            \ 'make -j9 2>&1 | tee -a err && '.
+    "            \ ' ./bin/unittester --gtest_filter=TChangeLogTest.*'
+    "set makeef="/home/ignat/yt/build/err"
+    "copen
+endfunction
+
+function! TestYT()
+    execute '! cd /home/ignat/yt/build && '.
+            \ ' ./bin/unittester --gtest_filter=TYPathTest.*'
+endfunction
+
+function! DebugYT()
+    Pyclewn
+    Cfile ~/yt/build/bin/unittester
 endfunction
 
 nnoremap <leader>yt :call MakeYT()<CR>
+
+function! SetBreakpoint()
+    let number = line('.')
+    let filename = expand('%:p')
+    exec 'Cbreak '.filename.':'.number
+endfunction
+
+function! DeleteBreakpoint()
+    let number = line('.')
+    let filename = expand('%:p')
+    exec 'C clear '.filename.':'.number
+endfunction
+
+" Shortcuts for Pyclewn debugger
+nnoremap <F2> :call DeleteBreakpoint()<CR>
+nnoremap <F3> :call SetBreakpoint()<CR>
+nnoremap <F5> :Crun<CR>
+nnoremap <F6> :Ccontinue<CR>
+nnoremap <F7> :Cnext<CR>
+nnoremap <F8> :Cstep<CR>
+nnoremap <leader>va :Cdbgvar <C-R><C-W><CR>
+nnoremap <leader>vf :execute "Cfoldvar " . line(".")<CR>
+nnoremap <leader>vd :Cdelvar <C-R><C-W><CR>
+
+" CommandT alias
+nnoremap <silent> <leader>o :CommandT<CR>
 
 " }}}
 
