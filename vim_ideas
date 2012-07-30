@@ -1,6 +1,9 @@
 # open many files in separate buffers
 vim -b *.*
 
+# open all cpp files recursively
+:n **/*.cpp
+
 # replace in all buffers
 :argdo %s/old_text/new_text/gce | update
 

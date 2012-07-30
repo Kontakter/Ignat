@@ -104,8 +104,7 @@ if [[ "$platform" == "Darwin" ]]; then
     alias olymp="olymp_copy && vim main.cpp"
     alias olymp_tc="olymp_tc_copy && vim main.cpp"
 
-    export YT="/Users/ignat/YT/yt/ytlib"
-
+    export YT_HOME="/Users/ignat/YT"
 elif [[ "$platform" == "Linux" ]]; then
     # correct autocomplete of environment variables
     # shopt -s cdable_vars
@@ -183,9 +182,6 @@ elif [[ "$platform" == "Linux" ]]; then
     export ANALYZER="/home/ignat/code/maps/fastcgi/analyzer/"
     export ANALYZER_MODE=static
 
-    # Analyzer variables
-    export YT="/home/ignat/yt/yt/ytlib"
-
     # tmux completion and restore
     refresh_tmux() {
         if [[ -n $TMUX ]]; then
@@ -200,5 +196,13 @@ elif [[ "$platform" == "Linux" ]]; then
     fi
     alias tm="tmux attach-session -t 0"
     alias rtm="refresh_tmux"
+
+    # For run and debug yt
+    export LD_LIBRARY_PATH=/home/ignat/contrib/gperf/lib:$LD_LIBRARY_PATH
 fi
+
+# YT variables
+export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
+export YT="$YT_HOME/yt/ytlib"
+export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 

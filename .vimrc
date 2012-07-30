@@ -121,8 +121,8 @@ set tags=./tags;/
 " :colorscheme torte
 
 " Add path for find in vim
-set path+=/home/ignat/yt/
-set path+=/home/ignat/yt/yt/
+set path+=$HOME_YT
+set path+=$HOME_YT/yt/
 
 " }}}
 
@@ -272,7 +272,7 @@ noremap <leader>fp :echo expand('%:p')<CR>
 " noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 function! MakeYT()
-    make -C /home/ignat/yt/build -j9 | botright cwindow 7
+    make -C /home/ignat/yt/build -j8 | botright cwindow 7
     " ADD HERE RUNNING UNITTESTS
     "echom v:shell_error
     :"set makeprg="make -C /home/ignat/yt/build/Makefile"
@@ -283,14 +283,26 @@ function! MakeYT()
     "copen
 endfunction
 
-function! TestYT()
-    execute '! cd /home/ignat/yt/build && '.
-            \ ' ./bin/unittester --gtest_filter=TYPathTest.*'
+function! TestYT(...)
+    if a:0 > 0
+        let l:tests = a:000
+    else
+        let l:tests = ['*.*']
+    endif
+    for test in l:tests
+        execute '! cd /home/ignat/yt/build && '.
+                \ ' ./bin/unittester --gtest_filter='.test.' 2>/home/ignat/yt/yt/ytlib/out'
+    endfor
 endfunction
 
-function! DebugYT()
-    Pyclewn
+function! DebugUnittest()
     Cfile ~/yt/build/bin/unittester
+    Crun
+endfunction
+
+function! DebugMaster()
+    Cfile ~/yt/build/bin/ytserver
+    Crun --config master_config.yson --master --port 8001
 endfunction
 
 nnoremap <leader>yt :call MakeYT()<CR>
@@ -459,6 +471,9 @@ call pathogen#infect()
 if has("autocmd")
     " Cpp11 syntax
     autocmd! BufNewFile,BufRead *.cpp set syntax=cpp11
+    
+    " Proto syntax
+    autocmd! BufNewFile,BufRead *.proto set syntax=proto
 
     augroup executable
         autocmd! BufWritePost * call SetExecutableMode()
