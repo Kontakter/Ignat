@@ -98,11 +98,35 @@ if [[ "$platform" == "Darwin" ]]; then
 
     export WORK="/Users/ignat/Documents/Work"
 
+    prepare_topcoder()
+    {
+        local cur_dir="`pwd`" 
+        if [ "`pwd`" == "/Users/ignat/Downloads/Topcoder"]; then
+            echo "Wrong directory to prepare topcoder problem"
+            return
+        fi
+
+        if [ -n "$1" ]; then
+            local last_created_file="$1"
+        else
+            local last_created_file=`ls -t1 | head -n1`
+        fi
+        
+        if ! [ -f "$last_created_file" ] -o ! [[ $last_created_file = *.cpp ]]; then
+            echo "Last created object should be a cpp file"
+        fi
+        local name=${last_created_file%.*}
+        name=${name%*/}
+        echo "Name", $name
+
+    }
+
     export OLYMP_EXAMPLE="/Users/ignat/Olympiads/example"
     alias olymp_copy="cp '${OLYMP_EXAMPLE}/Makefile' '${OLYMP_EXAMPLE}/main.cpp' ."
     alias olymp_tc_copy="cp '${OLYMP_EXAMPLE}/Makefile' . && cp '${OLYMP_EXAMPLE}/tc.cpp' main.cpp"
     alias olymp="olymp_copy && vim main.cpp"
     alias olymp_tc="olymp_tc_copy && vim main.cpp"
+    alias make_topcoder="python $HOME/Olympiads/topcoder.py && vim main.cpp"
 
     export YT_HOME="/Users/ignat/YT"
 elif [[ "$platform" == "Linux" ]]; then
