@@ -39,6 +39,13 @@ fi
 # multiplication of float numbers:
 a="123.2"
 b="1.1"
-echo $a*$b | bc
+res=`echo "$a * $b" | bc`
 
 # Use man [ for read about checks
+
+# Get random number 
+x=$RANDOM
+
+# Multiline strings
+opts="--in a/b/c
+    --out c/d/e"

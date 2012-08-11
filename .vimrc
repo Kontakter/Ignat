@@ -272,7 +272,7 @@ noremap <leader>fp :echo expand('%:p')<CR>
 " noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 function! MakeYT()
-    make -C /home/ignat/yt/build -j8 | botright cwindow 7
+    make -C $YT_HOME/build -j8 | botright cwindow 7
     " ADD HERE RUNNING UNITTESTS
     "echom v:shell_error
     :"set makeprg="make -C /home/ignat/yt/build/Makefile"
@@ -290,8 +290,8 @@ function! TestYT(...)
         let l:tests = ['*.*']
     endif
     for test in l:tests
-        execute '! cd /home/ignat/yt/build && '.
-                \ ' ./bin/unittester --gtest_filter='.test.' 2>/home/ignat/yt/yt/ytlib/out'
+        execute '! cd $YT_HOME/build && '.
+                \ ' ./bin/unittester --gtest_filter='.test.' 2>$YT_HOME/yt/ytlib/out'
     endfor
 endfunction
 

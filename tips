@@ -34,3 +34,14 @@ echo "symbol" || c++fint
 
 # Determine library dependencies in OSX
 otool -L 
+
+# Use pv to show pipe through speed
+./run | pv > res
+
+# Use tee for logging to file and terminal
+./run |& tee my_log
+
+# Fix apt-get
+sudo apt-get clean && sudo apt-get autoremove 
+sudo apt-get -f install
+sudo dpkg --configure -a
