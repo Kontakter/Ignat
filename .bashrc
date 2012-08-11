@@ -184,7 +184,7 @@ elif [[ "$platform" == "Linux" ]]; then
 
     # Variables for use debian
     export EMAIL="ignat@yandex-team.ru"
-    export DEBFULLNAME="Ignat Kolesnichenko"
+    export DEBFULLNAME="Kolesnichenko Ignat"
     export BOOST_TEST_LOG_LEVEL=messages
 
     # Aliases for apt-get
@@ -223,6 +223,17 @@ elif [[ "$platform" == "Linux" ]]; then
 
     # For run and debug yt
     export LD_LIBRARY_PATH=/home/ignat/contrib/gperf/lib:$LD_LIBRARY_PATH
+    
+    export YT_HOME="/home/ignat/yt"
+
+    grep_kill() {
+        set -u
+        ps aux | grep "$1" | awk '{print $2}' | xargs kill
+        echo "Remaining processes:"
+        ps aux | grep "$1" 
+        set +u
+    }
+
 fi
 
 # YT variables
