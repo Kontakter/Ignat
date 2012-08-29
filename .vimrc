@@ -121,8 +121,14 @@ set tags=./tags;/
 " :colorscheme torte
 
 " Add path for find in vim
-set path+=$HOME_YT
-set path+=$HOME_YT/yt/
+set path+=$YT_HOME/
+set path+=$YT_HOME/yt/
+set path+=$HOME/arcadia/trunk/arcadia/
+
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': ['python'],
+                           \ 'passive_filetypes': [] }
+
 
 " }}}
 
@@ -170,6 +176,9 @@ inoremap <C-X> <ESC>:Ack <cword><CR>
 
 " Open vimrc
 noremap <leader>vm :vsplit ~/.vimrc<CR>
+
+" Open bashrc
+noremap <leader>bh :vsplit ~/.bashrc<CR>
 
 " Delete trailing whitespaces
 nnoremap <leader>dtr :%s/\s\+$//e<CR>
@@ -471,7 +480,7 @@ call pathogen#infect()
 if has("autocmd")
     " Cpp11 syntax
     autocmd! BufNewFile,BufRead *.cpp set syntax=cpp11
-    
+
     " Proto syntax
     autocmd! BufNewFile,BufRead *.proto set syntax=proto
 
@@ -484,6 +493,11 @@ if has("autocmd")
         autocmd!
         autocmd BufWritePost .vimrc source ~/.vimrc
         autocmd BufNewFile,BufRead ~/.vimrc set foldmethod=marker | set foldenable
+    augroup END
+
+    augroup bashrc
+        autocmd!
+        autocmd BufWritePost .bashrc silent !. $HOME/.bashrc
     augroup END
 
     augroup algorithms

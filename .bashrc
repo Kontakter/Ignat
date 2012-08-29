@@ -20,11 +20,6 @@ fi
 # Write comment to this command
 shopt -s cdspell
 
-# colorfull diff for subversion
-sdiff() {
-    svn diff --no-diff-deleted $@ | colordiff | less -SR
-}
-
 # default editor
 export EDITOR=vim
 
@@ -47,6 +42,9 @@ alias gclean='git clean -d -x -n'
 # aliases to tar extract and compress
 alias tc='tar cvzf'
 alias tx='tar xvzf'
+
+# aliases to vim
+alias vim_cpp='vim `find . -name "*.cpp"` `find . -name "*.h"`'
 
 
 platform=`uname`
@@ -100,7 +98,7 @@ if [[ "$platform" == "Darwin" ]]; then
 
     prepare_topcoder()
     {
-        local cur_dir="`pwd`" 
+        local cur_dir="`pwd`"
         if [ "`pwd`" == "/Users/ignat/Downloads/Topcoder"]; then
             echo "Wrong directory to prepare topcoder problem"
             return
@@ -111,7 +109,7 @@ if [[ "$platform" == "Darwin" ]]; then
         else
             local last_created_file=`ls -t1 | head -n1`
         fi
-        
+
         if ! [ -f "$last_created_file" ] -o ! [[ $last_created_file = *.cpp ]]; then
             echo "Last created object should be a cpp file"
         fi
@@ -134,7 +132,15 @@ elif [[ "$platform" == "Linux" ]]; then
     # shopt -s cdable_vars
     # complete -v -F _cd $nospace $filenames cd
 
+    # path to clang
+    PATH="/home/ignat/contrib/clang/build/bin:$PATH"
     PATH="/home/ignat/clang/build/Release+Asserts/bin:$PATH"
+
+    # path to ninja
+    PATH="/home/ignat/contrib/ninja:$PATH"
+
+    # path to cmake
+    PATH="/home/ignat/contrib/cmake/bin:$PATH"
 
     # make less more friendly for non-text input files, see lesspipe(1)
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -223,17 +229,21 @@ elif [[ "$platform" == "Linux" ]]; then
 
     # For run and debug yt
     export LD_LIBRARY_PATH=/home/ignat/contrib/gperf/lib:$LD_LIBRARY_PATH
-    
+
     export YT_HOME="/home/ignat/yt"
 
     grep_kill() {
         set -u
         ps aux | grep "$1" | awk '{print $2}' | xargs kill
         echo "Remaining processes:"
-        ps aux | grep "$1" 
+        ps aux | grep "$1"
         set +u
     }
 
+    # Svn tools
+    sdiff() {
+        svn diff $@ | colordiff | less -SR
+    }
 fi
 
 # YT variables
