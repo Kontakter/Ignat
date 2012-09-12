@@ -54,5 +54,14 @@ pstree
 
 # Stop current process but not kill (SIGSTOP)
 Ctrl-Z
+
 # Returned to stopped process (SIGCONT)
 bg
+
+# How to use google prof
+OPTS=-lprofiler -L/home/ignat/contrib/gperf/lib
+CPUPROFILE=prof ./your_binary
+/home/ignat/contrib/gperf/bin/pprof --ps your_binary prof > prof.ps
+
+# System message
+dmesg

@@ -262,5 +262,8 @@ fi
 # YT variables
 export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
 export YT="$YT_HOME/yt/ytlib"
+export WRAPPER="$YT_HOME/python/yt_wrapper"
 export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 
+# Rake
+export PATH=/var/lib/gems/1.8/bin:$PATH

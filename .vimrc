@@ -281,16 +281,10 @@ noremap <leader>fp :echo expand('%:p')<CR>
 " noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 function! MakeYT()
-    make -C $YT_HOME/build -j8 | botright cwindow 7
-    " ADD HERE RUNNING UNITTESTS
-    "echom v:shell_error
-    :"set makeprg="make -C /home/ignat/yt/build/Makefile"
-    "execute '! cd /home/ignat/yt/build && '.
-    "            \ 'make -j9 2>&1 | tee -a err && '.
-    "            \ ' ./bin/unittester --gtest_filter=TChangeLogTest.*'
-    "set makeef="/home/ignat/yt/build/err"
-    "copen
+    make -C $YT_HOME/build -j16 | botright cwindow 7
 endfunction
+
+nnoremap <leader>yt :call MakeYT()<CR>
 
 function! TestYT(...)
     if a:0 > 0
@@ -314,7 +308,11 @@ function! DebugMaster()
     Crun --config master_config.yson --master --port 8001
 endfunction
 
-nnoremap <leader>yt :call MakeYT()<CR>
+function! MakeClang()
+    make -C $HOME/contrib/clang/build -j16 | botright cwindow 7
+endfunction
+
+nnoremap <leader>cl :call MakeClang()<CR>
 
 function! SetBreakpoint()
     let number = line('.')
