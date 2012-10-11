@@ -45,3 +45,14 @@ otool -L
 sudo apt-get clean && sudo apt-get autoremove 
 sudo apt-get -f install
 sudo dpkg --configure -a
+
+# Grep processes
+pgrep
+
+# Show process tree
+pstree
+
+# Stop current process but not kill (SIGSTOP)
+Ctrl-Z
+# Returned to stopped process (SIGCONT)
+bg

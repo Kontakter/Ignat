@@ -63,6 +63,16 @@ else
 fi
 export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__git_ps1)$GREEN\$$NORMAL "
 
+cp1251_to_utf()
+{
+    if [ -z "$1" ]; then
+        echo "You should pass file to convert"
+        return
+    fi
+    cat "$1" | iconv -f cp1251 -t utf-8 >/tmp/converted
+    cp /tmp/converted "$1"
+}
+
 
 if [[ "$platform" == "Darwin" ]]; then
     # MacPorts Installer addition on 2011-06-26_at_12:43:19: adding an appropriate PATH variable for use with MacPorts.
@@ -79,6 +89,9 @@ if [[ "$platform" == "Darwin" ]]; then
 
     # Setting PATH for Python 2.7
     export PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH"
+
+    # Setting PATH for Scala sbt
+    export PATH="/Users/ignat/Experiments/sbt/bin:$PATH"
 
     # Use the last version of g++
     export CXX=$(which g++-mp-4.6)
