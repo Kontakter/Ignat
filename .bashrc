@@ -44,7 +44,7 @@ alias tc='tar cvzf'
 alias tx='tar xvzf'
 
 # aliases to vim
-alias vim_cpp='vim `find . -name "*.cpp"` `find . -name "*.h"`'
+alias vim_cpp='vim `find . -name "*.cpp"` `find . -name "*.h"` `find . -name "*.hxx"` `find . -name "*.cxx"` `find . -name "*.c"`'
 
 
 platform=`uname`
@@ -199,11 +199,12 @@ elif [[ "$platform" == "Linux" ]]; then
         alias egrep='egrep --color=auto'
     fi
 
-
-
     # Variables for use debian
     export EMAIL="ignat@yandex-team.ru"
     export DEBFULLNAME="Kolesnichenko Ignat"
+    export DEBCHANGE_RELEASE_HEURISTIC=changelog
+    alias dch='dch --distributor=debian'
+
     export BOOST_TEST_LOG_LEVEL=messages
 
     # Aliases for apt-get
@@ -262,7 +263,8 @@ fi
 # YT variables
 export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
 export YT="$YT_HOME/yt/ytlib"
-export WRAPPER="$YT_HOME/python/yt_wrapper"
+export WRAPPER="$YT_HOME/python/yt/wrapper"
+export YT_TESTS="$YT_HOME/tests/integration"
 export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 
 # Rake
