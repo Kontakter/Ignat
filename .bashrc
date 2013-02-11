@@ -46,6 +46,10 @@ alias tx='tar xvzf'
 # aliases to vim
 alias vim_cpp='vim `find . -name "*.cpp"` `find . -name "*.h"` `find . -name "*.hxx"` `find . -name "*.cxx"` `find . -name "*.c"`'
 
+# Svn tools
+sdiff() {
+    svn diff $@ | colordiff | less -SR
+}
 
 platform=`uname`
 
@@ -223,8 +227,8 @@ elif [[ "$platform" == "Linux" ]]; then
     export PART="/home/ignat/code/maps/fastcgi/analyzer/graph_partition/"
 
     # Analyzer variables
-    export ANALYZER="/home/ignat/code/maps/fastcgi/analyzer/"
-    export ANALYZER_MODE=static
+    #export ANALYZER="/home/ignat/mapscore/fastcgi/analyzer/"
+    #export ANALYZER_MODE=static
 
     # tmux completion and restore
     refresh_tmux() {
@@ -254,10 +258,10 @@ elif [[ "$platform" == "Linux" ]]; then
         set +u
     }
 
-    # Svn tools
-    sdiff() {
-        svn diff $@ | colordiff | less -SR
-    }
+    alias yt="/home/ignat/yt/python/yt/wrapper/yt"
+
+    export GTEST_COLOR=1
+    export GENOME_DIR=/local/home/ignat/biology/code
 fi
 
 # YT variables
@@ -265,7 +269,6 @@ export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
 export YT="$YT_HOME/yt/ytlib"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
-export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 
 # Rake
 export PATH=/var/lib/gems/1.8/bin:$PATH
