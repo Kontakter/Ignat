@@ -20,6 +20,7 @@
     psh = push origin master
     pl = pull origin master
     hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    bwhist = log --graph --pretty=format:'%h -%d %s (%cr) <%an>' --abbrev-commit
 
 [branch]
     autosetuprebase = always

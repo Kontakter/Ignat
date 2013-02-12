@@ -245,6 +245,8 @@ elif [[ "$platform" == "Linux" ]]; then
     alias tm="tmux attach-session -t 0"
     alias rtm="refresh_tmux"
 
+    alias tmux="TERM=screen-256color-bce tmux"
+
     # For run and debug yt
     export LD_LIBRARY_PATH=/home/ignat/contrib/gperf/lib:$LD_LIBRARY_PATH
 
@@ -262,13 +264,17 @@ elif [[ "$platform" == "Linux" ]]; then
 
     export GTEST_COLOR=1
     export GENOME_DIR=/local/home/ignat/biology/code
+    export PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no"
+    export PATH=/usr/lib/ccache:$PATH
 fi
 
 # YT variables
 export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
-export YT="$YT_HOME/yt/ytlib"
+export YT="$YT_HOME/yt"
+export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
+export PT="$YT_HOME/scripts/process_tables"
 
 # Rake
 export PATH=/var/lib/gems/1.8/bin:$PATH

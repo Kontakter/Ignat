@@ -1,6 +1,9 @@
 " Section: options
 " {{{
 
+" Turn on pathogen plugin
+call pathogen#infect()
+
 " This setting prevents vim from emulating the original vi's
 " bugs and limitations.
 set nocompatible
@@ -41,7 +44,7 @@ set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 set nohls
 
 " Turn on syntax highlighting.
-syntax on
+syntax enable
 
 " Change highlight theme to more comfortable
 set background=dark
@@ -118,7 +121,9 @@ highlight PmenuSel ctermfg=Green ctermbg=DarkBlue
 set tags=./tags;/
 
 " Colorscheme for MacVim
-" :colorscheme torte
+" set t_Co=256
+" let g:solarized_termcolors=16
+" colorscheme solarized
 
 " Add path for find in vim
 set path+=$YT_HOME/
@@ -471,9 +476,6 @@ function! SetExecutableMode()
         endif
     endif
 endfunction
-
-" Turn on pathogen plugin
-call pathogen#infect()
 
 if has("autocmd")
     " Cpp11 syntax
