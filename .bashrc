@@ -254,18 +254,21 @@ elif [[ "$platform" == "Linux" ]]; then
 
     grep_kill() {
         set -u
-        ps aux | grep "$1" | awk '{print $2}' | xargs kill
+        for pid in `ps aux | grep "$1" | awk '{print $2}'`; do
+            kill $pid
+        done
         echo "Remaining processes:"
         ps aux | grep "$1"
         set +u
     }
 
-    alias yt="/home/ignat/yt/python/yt/wrapper/yt"
+    #alias yt="/home/ignat/yt/python/yt/wrapper/yt"
 
     export GTEST_COLOR=1
     export GENOME_DIR=/local/home/ignat/biology/code
     export PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no"
     export PATH=/usr/lib/ccache:$PATH
+    export PATH=/home/ignat/contrib/pyclewn-1.10.py2:$PATH
 fi
 
 # YT variables

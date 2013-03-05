@@ -38,7 +38,17 @@ set vb t_vb=
 " Makes awesome statusline
 set ruler
 set laststatus=2
-set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+
+" Statusline
+set statusline=
+set statusline+=%.30F "Full path to filename
+set statusline+=%{fugitive#statusline()} "Git branch info
+set statusline+=%h%m%r%w " file flags
+" %y -- file content type (latex, python, ...)
+"%{&ff} -- file type (dos, unix, mac)
+set statusline+=%= "Right alignment
+set statusline+=%l/%L:%3c\ %2P "Cursor position, percentage
+
 
 " Turns off search highlighting.
 set nohls
@@ -134,6 +144,8 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['python'],
                            \ 'passive_filetypes': [] }
 
+set wildmode=longest,full
+set wildmenu
 
 " }}}
 
