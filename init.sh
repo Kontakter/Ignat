@@ -2,7 +2,7 @@
 
 git submodule init && git submodule update
 
-pathogen_path="~/.vim/autoload/pathogen.vim"
+pathogen_path="$HOME/.vim/autoload/pathogen.vim"
 if [ ! -e "$pathogen_path" ]; then
     mkdir -p ~/.vim/autoload/
     curl https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim >"$pathogen_path"
