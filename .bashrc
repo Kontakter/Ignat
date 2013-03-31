@@ -6,9 +6,14 @@ export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
+export HISTFILESIZE=1990000
+export HISTSIZE=1990000
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+export PROMPT_COMMAND="history -a"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -277,6 +282,7 @@ export YT="$YT_HOME/yt"
 export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
+export YT_PROXY="proxy.yt.yandex.net"
 export PT="$YT_HOME/scripts/process_tables"
 
 # Rake

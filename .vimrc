@@ -49,7 +49,6 @@ set statusline+=%h%m%r%w " file flags
 set statusline+=%= "Right alignment
 set statusline+=%l/%L:%3c\ %2P "Cursor position, percentage
 
-
 " Turns off search highlighting.
 set nohls
 
@@ -147,6 +146,8 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 set wildmode=longest,full
 set wildmenu
 
+" let g:clang_user_options='|| exit 0'
+
 " }}}
 
 " Section: mappings
@@ -184,7 +185,7 @@ nnoremap <leader>ss :setlocal spell!<CR>
 nnoremap <leader>sh :setlocal hlsearch!<CR>
 
 " Shortcut for replace
-nnoremap <leader>r :%s///gc<left><left><left><left>
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//ge<left><left><left>
 
 " Awesome search by ack. Use :Ack instead from ack-plugin
 " nnoremap <leader>ac :! ack <right>
@@ -238,6 +239,10 @@ inoremap <leader>tt <ESC>:w<CR>:MakeTest<CR>
 nnoremap gh :vsp<CR>gf
 nnoremap gb :sp<CR>gf
 
+" Fugitive shortcuts
+nnoremap <leader>gl :Glog<CR>:copen<CR>
+nnoremap <leader>gb :Gblame<CR>
+
 " Shortcuts fir quickfix window
 nnoremap <leader>] :cnext<CR>
 nnoremap <leader>[ :cprevious<CR>
@@ -281,13 +286,12 @@ noremap <leader>p :call PasteFromClipboard()<CR>
 inoremap <leader>p :call PasteFromClipboard()<CR>
 
 " Ctags split in vertical window
-nnoremap <C-0> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-inoremap <C-0> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-nnoremap <C-9> :tab split <CR>:exec("tag ".expand("<cword>"))<CR>
-inoremap <C-9> :tab split <CR>:exec("tag ".expand("<cword>"))<CR>
-
-" Show full path
-noremap <leader>fp :echo expand('%:p')<CR>
+nnoremap z] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+inoremap z] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" nnoremap z[ :tn<CR>
+" inoremap z[ :tn<CR> 
+" nnoremap zp :tp<CR>
+" inoremap zp :tp<CR>
 
 " In visual mode when you press * or # to search for the current selection
 " vnoremap <silent> * :call VisualSearch('f')<CR>
@@ -311,7 +315,7 @@ function! TestYT(...)
     endif
     for test in l:tests
         execute '! cd $YT_HOME/build && '.
-                \ ' ./bin/unittester --gtest_filter='.test.' 2>$YT_HOME/yt/ytlib/out'
+                \ ' ./bin/unittester --gtest_filter='.test
     endfor
 endfunction
 
@@ -356,6 +360,11 @@ nnoremap <leader>vd :Cdelvar <C-R><C-W><CR>
 
 " CommandT alias
 nnoremap <silent> <leader>o :CommandT<CR>
+
+" Ctags aliases
+nnoremap z[ :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+inoremap z[ :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 
 " }}}
 
