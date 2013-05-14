@@ -68,3 +68,4 @@ dmesg
 
 # Tcp flow: listen to port 18080 of device and save all messages to the current dir
 sudo tcpflow -i lo port 18080
+

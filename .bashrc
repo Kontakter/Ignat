@@ -300,4 +300,3 @@ export PT="$YT_HOME/scripts/process_tables"
 if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
 fi
-
