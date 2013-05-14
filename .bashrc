@@ -270,8 +270,6 @@ elif [[ "$platform" == "Linux" ]]; then
         set +u
     }
 
-    #alias yt="/home/ignat/yt/python/yt/wrapper/yt"
-
     export GTEST_COLOR=1
     export GENOME_DIR=/local/home/ignat/biology/code
     export PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no"
@@ -287,6 +285,10 @@ export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
 export YT_PROXY="proxy.yt.yandex.net"
 export PT="$YT_HOME/scripts/process_tables"
+
+if [ -f ~/.yt/completion ]; then
+    source ~/.yt/completion
+fi
 
 # Rake
 export PATH=/var/lib/gems/1.8/bin:$PATH

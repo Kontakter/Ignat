@@ -252,7 +252,7 @@ nnoremap <leader>[ :cprevious<CR>
 nnoremap <leader>hg :syntax sync fromstart<CR>
 
 " Command-T shortcut
-nnoremap <silent> <leader>l :CommandT<CR>
+nnoremap <silent> <leader>l :CtrlP<CR>
 
 " Olymp shortcuts
 function! OpenInputOutput(name)
@@ -357,9 +357,6 @@ nnoremap <F8> :Cstep<CR>
 nnoremap <leader>va :Cdbgvar <C-R><C-W><CR>
 nnoremap <leader>vf :execute "Cfoldvar " . line(".")<CR>
 nnoremap <leader>vd :Cdelvar <C-R><C-W><CR>
-
-" CommandT alias
-nnoremap <silent> <leader>o :CommandT<CR>
 
 " Ctags aliases
 nnoremap z[ :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
