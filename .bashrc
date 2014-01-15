@@ -291,7 +291,7 @@ export YT="$YT_HOME/yt"
 export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
-export YT_PROXY="proxy.yt.yandex.net"
+export YT_PROXY="kant.yt.yandex.net"
 export PT="$YT_HOME/scripts/process_tables"
 
 if [ -f ~/.yt/completion ]; then
