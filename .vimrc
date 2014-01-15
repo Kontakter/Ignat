@@ -486,21 +486,23 @@ endif
 iabbrev pacakges packages
 " }}}
 
+
 " Section: vundle
 " {{{
-" set rtp+=~/.vim/bundle/vundle/
-" call vundle#rc()
+ set rtp+=~/.vim/bundle/vundle/
+ call vundle#rc()
 
-"" let Vundle manage Vundle
-"" required! 
-"Bundle 'gmarik/vundle'
-"
-"Bundle 'Valloric/YouCompleteMe'
-"
-"let g:ycm_global_ycm_extra_conf = '/home/ignat/.ycm_extra_conf.py'
-"let g:ycm_confirm_extra_conf = 0
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+Bundle 'Valloric/YouCompleteMe'
+
+let g:ycm_global_ycm_extra_conf = '/home/ignat/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
 
 " }}}
+
 
 " Section: autocmd and plugins
 " {{{

@@ -277,6 +277,7 @@ elif [[ "$platform" == "Linux" ]]; then
     # path to clang
     export PATH="/home/ignat/contrib/clang/build/bin:$PATH"
     export PATH="/home/ignat/clang/build/Release+Asserts/bin:$PATH"
+    export PATH="/home/ignat/contrib/llvm/build/Debug+Asserts/bin:$PATH"
 
     # path to ninja
     export PATH="/home/ignat/contrib/ninja:$PATH"
