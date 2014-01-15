@@ -139,6 +139,8 @@ set path+=$YT_HOME/
 set path+=$YT_HOME/yt/
 set path+=$HOME/arcadia/trunk/arcadia/
 
+" Do not forget to install pyflakes:
+" sudo pip install pyflakes
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['python'],
                            \ 'passive_filetypes': [] }
@@ -486,8 +488,8 @@ iabbrev pacakges packages
 
 " Section: vundle
 " {{{
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set rtp+=~/.vim/bundle/vundle/
+" call vundle#rc()
 
 "" let Vundle manage Vundle
 "" required! 
@@ -503,8 +505,6 @@ call vundle#rc()
 " Section: autocmd and plugins
 " {{{
 " Add executable mode to bash and python scripts
-
-let g:pyflakes_use_quickfix=0
 
 function! SetExecutableMode()
     if getline(1) =~ "^#!"

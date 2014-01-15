@@ -15,6 +15,6 @@ for package in "pip readline"; do
     sudo easy_install "$package"
 done
 
-for package in "distribute simple_json dateutils ipython nose numpy scipy"; do
+for package in "distribute simple_json dateutils ipython nose numpy scipy pyflakes"; do
     sudo pip install "$package"
 done

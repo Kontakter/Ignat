@@ -1,6 +1,6 @@
 #!/bin/sh -eu
 
-git submodule init && git submodule update
+git submodule update --init --recursive
 
 pathogen_path="$HOME/.vim/autoload/pathogen.vim"
 if [ ! -e "$pathogen_path" ]; then
