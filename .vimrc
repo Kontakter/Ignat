@@ -95,7 +95,7 @@ set cpoptions=aABceFsmq
 set iskeyword+=_,$,@,%,#
 
 " Vim remembers 500 commands
-set history=500
+set history=5000
 
 " Set 7 lines to the curors - when moving vertical..
 set scrolloff=7
@@ -190,7 +190,7 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>//ge<left><left><left>
 " Awesome search by ack. Use :Ack instead from ack-plugin
 " nnoremap <leader>ac :! ack <right>
 nnoremap <C-X> :Ack <cword><CR>
-inoremap <C-X> <ESC>:Ack <cword><CR>
+inoremap <ESC><C-X> :Ack <cword><CR>
 
 " Open vimrc
 noremap <leader>vm :vsplit ~/.vimrc<CR>
@@ -214,7 +214,7 @@ noremap <leader>bp :bprevious<CR>
 
 " Use space and backspace to navigate by page-down and page-up
 noremap <Space> <C-D>
-noremap <BS> <C-U>
+" noremap <BS> <C-U>
 
 " Map ctrl+arrow and ctrl+vimarrow to navigate split windows.
 nnoremap <silent> <C-Right> <c-w>l
@@ -484,9 +484,28 @@ endif
 iabbrev pacakges packages
 " }}}
 
+" Section: vundle
+" {{{
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+"" let Vundle manage Vundle
+"" required! 
+"Bundle 'gmarik/vundle'
+"
+"Bundle 'Valloric/YouCompleteMe'
+"
+"let g:ycm_global_ycm_extra_conf = '/home/ignat/.ycm_extra_conf.py'
+"let g:ycm_confirm_extra_conf = 0
+
+" }}}
+
 " Section: autocmd and plugins
 " {{{
 " Add executable mode to bash and python scripts
+
+let g:pyflakes_use_quickfix=0
+
 function! SetExecutableMode()
     if getline(1) =~ "^#!"
         if getline(1) =~ "/bin/"

@@ -157,16 +157,6 @@ elif [[ "$platform" == "Linux" ]]; then
     # shopt -s cdable_vars
     # complete -v -F _cd $nospace $filenames cd
 
-    # path to clang
-    PATH="/home/ignat/contrib/clang/build/bin:$PATH"
-    PATH="/home/ignat/clang/build/Release+Asserts/bin:$PATH"
-
-    # path to ninja
-    PATH="/home/ignat/contrib/ninja:$PATH"
-
-    # path to cmake
-    PATH="/home/ignat/contrib/cmake/bin:$PATH"
-
     # make less more friendly for non-text input files, see lesspipe(1)
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -222,12 +212,13 @@ elif [[ "$platform" == "Linux" ]]; then
     # Aliases for apt-get
     alias agu="sudo apt-get update"
     alias agi="sudo apt-get install"
+    alias agr="sudo apt-get remove"
     alias acp="apt-cache policy"
 
     # alias for ack
     alias ack="ack-grep"
 
-    # Some popular directories
+    # Some popular directories (maps project)
     export PYMOD="/home/ignat/code/maps/pymod/"
     export API="/home/ignat/code/maps/pymod/yandex/maps/analyzer/api/"
     export MR="/home/ignat/code/maps/pymod/yandex/maps/mapreduce/"
@@ -271,10 +262,27 @@ elif [[ "$platform" == "Linux" ]]; then
     }
 
     export GTEST_COLOR=1
-    export GENOME_DIR=/local/home/ignat/biology/code
+    export GENOME_DIR=/home/ignat/biology/binom
     export PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no"
-    export PATH=/usr/lib/ccache:$PATH
-    export PATH=/home/ignat/contrib/pyclewn-1.10.py2:$PATH
+
+    # path to ccache
+    export PATH="/usr/lib/ccache:$PATH"
+
+    # path to pyclewn
+    export PATH="/home/ignat/contrib/pyclewn-1.10.py2:$PATH"
+
+    # path to rake
+    export PATH="/var/lib/gems/1.8/bin:$PATH"
+
+    # path to clang
+    export PATH="/home/ignat/contrib/clang/build/bin:$PATH"
+    export PATH="/home/ignat/clang/build/Release+Asserts/bin:$PATH"
+
+    # path to ninja
+    export PATH="/home/ignat/contrib/ninja:$PATH"
+
+    # path to cmake
+    export PATH="/home/ignat/contrib/cmake/bin:$PATH"
 fi
 
 # YT variables
@@ -290,5 +298,3 @@ if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
 fi
 
-# Rake
-export PATH=/var/lib/gems/1.8/bin:$PATH
