@@ -261,7 +261,6 @@ elif [[ "$platform" == "Linux" ]]; then
     }
 
     export GTEST_COLOR=1
-    export GENOME_DIR=/home/ignat/biology/binom
     export PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no"
 
     # path to ccache
@@ -296,6 +295,7 @@ export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
 export YT_PROXY="plato.yt.yandex.net"
 export PT="$YT_HOME/scripts/process_tables"
+export GENOME_DIR="/home/ignat/binom"
 
 if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
