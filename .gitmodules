@@ -16,9 +16,6 @@
 [submodule ".vim/bundle/command-t.vim"]
 	path = .vim/bundle/command-t.vim
 	url = https://github.com/wincent/Command-T.git
-[submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -34,3 +31,9 @@
 [submodule ".vim/bundle/vundle"]
 	path = .vim/bundle/vundle
 	url = git@github.com:gmarik/vundle.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = git@github.com:scrooloose/syntastic.git
+[submodule ".vim/bundle/pyflakes"]
+	path = .vim/bundle/pyflakes
+	url = git://github.com/kevinw/pyflakes-vim.git

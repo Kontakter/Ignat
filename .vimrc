@@ -142,8 +142,10 @@ set path+=$HOME/arcadia/trunk/arcadia/
 " Do not forget to install pyflakes:
 " sudo pip install pyflakes
 let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['python'],
-                           \ 'passive_filetypes': [] }
+            \ 'active_filetypes': ['python'],
+            \ 'passive_filetypes': [] }
+let g:syntastic_python_checkers = ['pyflakes']
+let g:pyflakes_use_quickfix = 0
 
 set wildmode=longest,full
 set wildmenu
@@ -170,6 +172,10 @@ nnoremap <leader>ц :w!<CR>
 " Shortcut for quit
 nnoremap <leader>q :q<CR>
 nnoremap <leader>й :q<CR>
+
+" Remap increment/decrement
+nnoremap <leader>- <C-X>
+nnoremap <leader>= <C-A>
 
 " Shortcut for set on/off list
 nnoremap <leader>sl :setlocal list!<CR>
