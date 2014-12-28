@@ -254,7 +254,7 @@ elif [[ "$platform" == "Linux" ]]; then
     grep_kill() {
         set -u
         for pid in `ps aux | grep "$1" | awk '{print $2}'`; do
-            kill $pid
+            kill -9 $pid
         done
         echo "Remaining processes:"
         ps aux | grep "$1"
@@ -268,7 +268,7 @@ elif [[ "$platform" == "Linux" ]]; then
     export PATH="/usr/lib/ccache:$PATH"
 
     # path to pyclewn
-    export PATH="/home/ignat/contrib/pyclewn-1.10.py2:$PATH"
+    export PATH="/home/ignat/contrib/pyclewn:$PATH"
 
     # path to rake
     export PATH="/var/lib/gems/1.8/bin:$PATH"
