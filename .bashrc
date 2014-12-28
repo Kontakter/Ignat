@@ -69,6 +69,7 @@ else
     GREEN=""
     YELLOW=""
 fi
+
 export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__git_ps1)$GREEN\$$NORMAL "
 
 cp1251_to_utf()

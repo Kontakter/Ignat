@@ -142,12 +142,8 @@ set path+=$HOME/arcadia/trunk/arcadia/
 " Do not forget to install pyflakes:
 " sudo pip install pyflakes
 let g:syntastic_mode_map = { 'mode': 'passive',
-            \ 'active_filetypes': ['python'],
+            \ 'active_filetypes': ['python', 'javascript'],
             \ 'passive_filetypes': [] }
-let g:syntastic_python_checkers = ['pyflakes']
-let g:pyflakes_use_quickfix = 0
-
-set wildmode=longest,full
 set wildmenu
 
 " let g:clang_user_options='|| exit 0'
