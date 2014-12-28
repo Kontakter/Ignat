@@ -144,6 +144,11 @@ set path+=$HOME/arcadia/trunk/arcadia/
 let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['python', 'javascript'],
             \ 'passive_filetypes': [] }
+" Turn it of, use simply pyflakes bundle
+let g:syntastic_python_checkers = []
+let g:pyflakes_use_quickfix = 0
+
+set wildmode=longest,full
 set wildmenu
 
 " let g:clang_user_options='|| exit 0'
@@ -190,6 +195,9 @@ nnoremap <leader>sh :setlocal hlsearch!<CR>
 
 " Shortcut for replace
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//ge<left><left><left>
+
+" Shortcut to show full path of current file
+nnoremap fp <ESC>:echo expand('%:p')<CR>
 
 " Awesome search by ack. Use :Ack instead from ack-plugin
 " nnoremap <leader>ac :! ack <right>
@@ -520,7 +528,7 @@ endfunction
 
 if has("autocmd")
     " Cpp11 syntax
-    autocmd! BufNewFile,BufRead *.cpp set syntax=cpp11
+    autocmd! BufNewFile,BufRead *.cpp set syntax=cpp
 
     " Proto syntax
     autocmd! BufNewFile,BufRead *.proto set syntax=proto
