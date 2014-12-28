@@ -60,6 +60,7 @@ bg
 
 # How to use google prof
 LDFLAGS=-Wl,-no-as-needed -lprofiler -L/home/ignat/contrib/gperf/lib
+#-Wl,-no-as-needed -lprofiler -L/home/ignat/contrib/gperftools/lib
 CPUPROFILE=prof ./your_binary
 /home/ignat/contrib/gperf/bin/pprof --ps your_binary prof > prof.ps
 
