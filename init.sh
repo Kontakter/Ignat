@@ -3,13 +3,12 @@
 git submodule update --init --recursive
 
 pathogen_path="$HOME/.vim/autoload/pathogen.vim"
-if [ ! -e "$pathogen_path" ]; then
-    mkdir -p ~/.vim/autoload/
-    curl -L https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim >"$pathogen_path"
-fi
+rm "$pathogen_path"
+mkdir -p ~/.vim/autoload/
+curl -L https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim >"$pathogen_path"
 
 path=`pwd`
-for x in `find . | egrep -v "\.$" | egrep -v "*\.git/" | egrep -v "*\.git$"  | egrep -v "init.sh" | egrep -v "Makefile" | egrep -v "you_complete_me"`
+for x in `find . | egrep -v "\.$" | egrep -v ".*\.git/" | egrep -v ".*\.git$" | egrep -v "init.sh" | egrep -v "Makefile" | egrep -v "you_complete_me"`
 do
     if [ -e ~/$x ]; then
         echo "File $x already exists"
