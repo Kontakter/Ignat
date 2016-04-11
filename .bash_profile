@@ -4,4 +4,3 @@ alias screen='TERM=screen screen'
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
-

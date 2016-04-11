@@ -72,3 +72,7 @@ sudo tcpflow -i lo port 18080
 
 # Build python debian package
 dpkg-buildpackage -b
+
+# PDSH to hosts with custom key and without identity checks.
+PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no -i .ssh/openstack_sas.pem" pdsh -l root -R ssh -w "yt-teamcity[3-12].haze.yandex.net" "ps aux | grep ytserver | awk '{"'print $2'"}' | xargs kill"
+

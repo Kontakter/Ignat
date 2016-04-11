@@ -111,6 +111,10 @@ if [[ "$platform" == "Darwin" ]]; then
     #export CXX=$(which g++)
     #export CC=$(which gcc)
 
+    # Fix locale problem on new Mac.
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+
     # Colorize output of ls
     export LSCOLORS=Exfxcxdxbxegedabagacad
     alias ls="ls -FG"
@@ -152,6 +156,22 @@ if [[ "$platform" == "Darwin" ]]; then
     alias make_topcoder="python $HOME/Olympiads/topcoder.py && vim main.cpp"
 
     export YT_HOME="/Users/ignat/YT"
+
+    # Setting PATH for Python 2.7
+    # The orginal version is saved in .bash_profile.pysave
+    PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+    export PATH
+
+    # Setting PATH for Python 2.7
+    # The orginal version is saved in .bash_profile.pysave
+    PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+    export PATH
+
+    # Setting PATH for Python 2.7
+    # The orginal version is saved in .bash_profile.pysave
+    PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+    export PATH
+
 elif [[ "$platform" == "Linux" ]]; then
     # correct autocomplete of environment variables
     # shopt -s cdable_vars
