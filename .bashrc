@@ -241,7 +241,7 @@ elif [[ "$platform" == "Linux" ]]; then
     if [ -f ~/.tmux-completion.bash ]; then
         source ~/.tmux-completion.bash
     fi
-    alias tm="tmux attach-session -t 0"
+    alias tm="tmux attach-session -t 0 -d"
     alias rtm="refresh_tmux"
 
     alias tmux="TERM=screen-256color-bce tmux"
@@ -286,6 +286,8 @@ elif [[ "$platform" == "Linux" ]]; then
 
     # path to mario
     export PATH="/opt/mario:$PATH"
+
+    export GCC_COLORS=""
 fi
 
 # YT variables
@@ -294,7 +296,7 @@ export YT="$YT_HOME/yt"
 export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
-export YT_PROXY="plato.yt.yandex.net"
+export YT_PROXY="hahn.yt.yandex.net"
 export PT="$YT_HOME/scripts/process_tables"
 export GENOME_DIR="/home/ignat/binom"
 
