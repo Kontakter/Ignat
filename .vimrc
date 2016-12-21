@@ -294,6 +294,22 @@ nnoremap <leader>tex :! pdflatex % && open %<."pdf"<CR>
 nnoremap <leader>hs :! ghc --make %<CR>
 
 
+" Navigate long line
+function! SetWrap()
+    nnoremap <buffer> <Up> gk
+    nnoremap <buffer> <Down> gj
+endfunction
+
+function! SetNoWrap()
+    nnoremap <buffer> <Up> k
+    nnoremap <buffer> <Down> j
+endfunction
+
+nnoremap <leader>wr :call SetWrap()<CR>
+nnoremap <leader>nwr :call SetNoWrap()<CR>
+inoremap <leader>wr :call SetWrap()<CR>
+inoremap <leader>nwr :call SetNoWrap()<CR>
+
 noremap <leader>p :call PasteFromClipboard()<CR>
 inoremap <leader>p :call PasteFromClipboard()<CR>
 

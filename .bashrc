@@ -323,3 +323,5 @@ export GENOME_DIR="/home/ignat/binom"
 if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
 fi
+
+alias dcj="/Users/ignat/Olympiads/CodeJam2016/2_dist/dcj/dcj.sh"
