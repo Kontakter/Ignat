@@ -172,6 +172,9 @@ if [[ "$platform" == "Darwin" ]]; then
     PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
     export PATH
 
+    # Alias for distributed code jam
+    alias dcj="/Users/ignat/Olympiads/CodeJam2016/2_dist/dcj/dcj.sh"
+
 elif [[ "$platform" == "Linux" ]]; then
     # correct autocomplete of environment variables
     # shopt -s cdable_vars
@@ -308,10 +311,13 @@ elif [[ "$platform" == "Linux" ]]; then
     export PATH="/opt/mario:$PATH"
 
     export GCC_COLORS=""
+    #export CFLAGS="-fno-color-diagnostics"
+    #export CXXFLAGS="-fno-color-diagnostics"
 fi
 
 # YT variables
 export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
+export NODE_PATH="$YT_HOME/build/yt/nodejs/node_modules:$NODE_PATH"
 export YT="$YT_HOME/yt"
 export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
@@ -324,4 +330,3 @@ if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
 fi
 
-alias dcj="/Users/ignat/Olympiads/CodeJam2016/2_dist/dcj/dcj.sh"

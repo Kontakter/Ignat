@@ -126,6 +126,9 @@ set encoding=utf-8
 highlight Pmenu ctermfg=DarkGreen ctermbg=DarkGrey
 highlight PmenuSel ctermfg=Green ctermbg=DarkBlue
 
+" Spell hightlights. It humanizes pyflakes highlighting.
+highlight SpellBad ctermbg=DarkBlue
+
 " Search tags files in all up directories
 set tags=./tags;/
 
@@ -144,7 +147,7 @@ set path+=$HOME/arcadia/trunk/arcadia/
 let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['python', 'javascript'],
             \ 'passive_filetypes': [] }
-" Turn it of, use simply pyflakes bundle
+" Turn it off, use simply pyflakes bundle
 let g:syntastic_python_checkers = []
 let g:pyflakes_use_quickfix = 0
 
@@ -317,7 +320,7 @@ inoremap <leader>p :call PasteFromClipboard()<CR>
 nnoremap z] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 inoremap z] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " nnoremap z[ :tn<CR>
-" inoremap z[ :tn<CR> 
+" inoremap z[ :tn<CR>
 " nnoremap zp :tp<CR>
 " inoremap zp :tp<CR>
 
@@ -328,6 +331,8 @@ inoremap z] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " When you press gv you vimgrep after the selected text
 " vnoremap <silent> gv :call VisualSearch('gv')<CR>
 " noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+
+set makeprg=make\ EXTRA_CFLAGS=-fno-color-diagnostic\ EXTRA_CXXFLAGS=-fno-color-diagnostic
 
 function! MakeYT()
     make -C $YT_HOME/build -j16 | botright cwindow 7
@@ -518,7 +523,7 @@ iabbrev pacakges packages
  call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 Bundle 'Valloric/YouCompleteMe'
@@ -545,6 +550,9 @@ endfunction
 if has("autocmd")
     " Cpp11 syntax
     autocmd! BufNewFile,BufRead *.cpp set syntax=cpp
+
+    " Go syntax
+    autocmd! BufNewFile,BufRead *.go set syntax=go
 
     " Proto syntax
     autocmd! BufNewFile,BufRead *.proto set syntax=proto
