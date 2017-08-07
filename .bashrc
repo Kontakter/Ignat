@@ -319,12 +319,12 @@ fi
 export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
 export NODE_PATH="$YT_HOME/build/yt/nodejs/node_modules:$NODE_PATH"
 export YT="$YT_HOME/yt"
-export PYTHONPATH="$YT_HOME/python:$PYTHONPATH"
+export PYTHONPATH="$YT_HOME/yp/python:$YT_HOME/python:$PYTHONPATH"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
 export YT_PROXY="hahn.yt.yandex.net"
 export PT="$YT_HOME/scripts/process_tables"
-export GENOME_DIR="/home/ignat/binom"
+export GENOME_DIR="/yt/disk1/ignat/biology/binom"
 
 if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
