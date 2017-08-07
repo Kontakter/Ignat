@@ -3,3 +3,4 @@
 --ignore-dir=tests.sandbox/
 --type-set
 golang=.go
+

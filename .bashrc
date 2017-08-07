@@ -43,6 +43,8 @@ alias v='vim'
 alias gp='git pkg'
 alias gclean='git clean -d -x -n'
 
+alias decolor='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
+
 # aliases to tar extract and compress
 alias tc='tar cvzf'
 alias tx='tar xvzf'
@@ -306,6 +308,9 @@ elif [[ "$platform" == "Linux" ]]; then
 
     # path to cmake
     export PATH="/home/ignat/contrib/cmake/bin:$PATH"
+    
+    # path to arcadia ya
+    export PATH="/home/ignat/arcadia:$PATH"
 
     # path to mario
     export PATH="/opt/mario:$PATH"
@@ -317,9 +322,9 @@ fi
 
 # YT variables
 export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
-export NODE_PATH="$YT_HOME/build/yt/nodejs/node_modules:$NODE_PATH"
 export YT="$YT_HOME/yt"
 export PYTHONPATH="$YT_HOME/yp/python:$YT_HOME/python:$PYTHONPATH"
+export NODE_PATH="$YT_HOME/build/yt/nodejs/node_modules:$NODE_PATH"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
 export YT_PROXY="hahn.yt.yandex.net"
@@ -330,3 +335,8 @@ if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
 fi
 
+<<<<<<< HEAD
+=======
+#export NVM_DIR="/home/ignat/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+>>>>>>> gitignore, add arcadia to PATH. Add NODE_PATH to YT.

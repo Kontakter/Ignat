@@ -335,7 +335,7 @@ inoremap z] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 set makeprg=make\ EXTRA_CFLAGS=-fno-color-diagnostic\ EXTRA_CXXFLAGS=-fno-color-diagnostic
 
 function! MakeYT()
-    make -C $YT_HOME/cmake_build -j16 | botright cwindow 7
+    make -C $YT_HOME/cmake_build -j48 | botright cwindow 7
 endfunction
 
 nnoremap <leader>yt :call MakeYT()<CR>
