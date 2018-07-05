@@ -335,7 +335,7 @@ inoremap z] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 set makeprg=make\ EXTRA_CFLAGS=-fno-color-diagnostic\ EXTRA_CXXFLAGS=-fno-color-diagnostic
 
 function! MakeYT()
-    make -C $YT_HOME/build -j16 | botright cwindow 7
+    make -C $YT_HOME/cmake_build -j16 | botright cwindow 7
 endfunction
 
 nnoremap <leader>yt :call MakeYT()<CR>
@@ -347,18 +347,18 @@ function! TestYT(...)
         let l:tests = ['*.*']
     endif
     for test in l:tests
-        execute '! cd $YT_HOME/build && '.
+        execute '! cd $YT_HOME/cmake_build && '.
                 \ ' ./bin/unittester --gtest_filter='.test
     endfor
 endfunction
 
 function! DebugUnittest()
-    Cfile ~/yt/build/bin/unittester
+    Cfile ~/yt/cmake_build/bin/unittester
     Crun
 endfunction
 
 function! DebugMaster()
-    Cfile ~/yt/build/bin/ytserver
+    Cfile ~/yt/cmake_build/bin/ytserver
     Crun --config master_config.yson --master --port 8001
 endfunction
 
