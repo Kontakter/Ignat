@@ -57,6 +57,18 @@ sdiff() {
     svn diff $@ | colordiff | less -SR
 }
 
+slog() {
+    svn log $@ | less -SR
+}
+
+ysdiff() {
+    ya svn diff $@ | colordiff | less -SR
+}
+
+yslog() {
+    ya svn log $@ | less -SR
+}
+
 platform=`uname`
 
 # Status line
@@ -321,10 +333,10 @@ elif [[ "$platform" == "Linux" ]]; then
 fi
 
 # YT variables
-export PATH="$YT_HOME/build/bin:$YT_HOME/build/yt/nodejs:$PATH"
+export PATH="$YT_HOME/yp/python/yp/bin:$YT_HOME/cmake_build/bin:$YT_HOME/cmake_build/yt/nodejs:$PATH"
 export YT="$YT_HOME/yt"
 export PYTHONPATH="$YT_HOME/yp/python:$YT_HOME/python:$PYTHONPATH"
-export NODE_PATH="$YT_HOME/build/yt/nodejs/node_modules:$NODE_PATH"
+export NODE_PATH="$YT_HOME/cmake_build/yt/nodejs/node_modules:$NODE_PATH"
 export WRAPPER="$YT_HOME/python/yt/wrapper"
 export YT_TESTS="$YT_HOME/tests/integration"
 export YT_PROXY="hahn.yt.yandex.net"
@@ -335,8 +347,5 @@ if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
 fi
 
-<<<<<<< HEAD
-=======
-#export NVM_DIR="/home/ignat/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
->>>>>>> gitignore, add arcadia to PATH. Add NODE_PATH to YT.
+export NVM_DIR="/home/ignat/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
