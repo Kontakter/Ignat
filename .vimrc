@@ -348,7 +348,7 @@ function! TestYT(...)
     endif
     for test in l:tests
         execute '! cd $YT_HOME/cmake_build && '.
-                \ ' ./bin/unittester --gtest_filter='.test
+                \ ' ./bin/unittester-ytlib --gtest_filter='.test
     endfor
 endfunction
 
