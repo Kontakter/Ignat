@@ -3,7 +3,7 @@
 git submodule update --init --recursive
 
 pathogen_path="$HOME/.vim/autoload/pathogen.vim"
-rm "$pathogen_path"
+rm -f "$pathogen_path"
 mkdir -p ~/.vim/autoload/
 curl -L https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim >"$pathogen_path"
 
