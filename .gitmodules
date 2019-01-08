@@ -34,9 +34,6 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = git@github.com:scrooloose/syntastic.git
-[submodule ".vim/bundle/pyflakes"]
-	path = .vim/bundle/pyflakes
-	url = git://github.com/kevinw/pyflakes-vim.git
 [submodule ".vim/bundle/AnsiVim"]
 	path = .vim/bundle/AnsiVim
 	url = https://github.com/vim-scripts/AnsiEsc.vim.git
