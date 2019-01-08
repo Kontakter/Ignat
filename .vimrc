@@ -144,12 +144,20 @@ set path+=$HOME/arcadia/trunk/arcadia/
 
 " Do not forget to install pyflakes:
 " sudo pip install pyflakes
-let g:syntastic_mode_map = { 'mode': 'passive',
-            \ 'active_filetypes': ['python', 'javascript'],
-            \ 'passive_filetypes': [] }
-" Turn it off, use simply pyflakes bundle
-let g:syntastic_python_checkers = []
-let g:pyflakes_use_quickfix = 0
+"let g:syntastic_mode_map = { 'mode': 'passive',
+"            \ 'active_filetypes': ['python', 'javascript'],
+"            \ 'passive_filetypes': [] }
+"" Turn it off, use simply pyflakes bundle
+"let g:syntastic_python_checkers = []
+"let g:pyflakes_use_quickfix = 0
+" call flake8#Flake8()
+
+let g:flake8_show_in_gutter = 0
+let g:flake8_show_in_file = 1
+let g:flake8_show_quickfix = 0
+
+let g:go_version_warning = 0
+
 
 set wildmode=longest,full
 set wildmenu
@@ -557,6 +565,9 @@ if has("autocmd")
 
     " Proto syntax
     autocmd! BufNewFile,BufRead *.proto set syntax=proto
+
+    " Python flake8 plugin.
+    autocmd! BufNewFile,BufRead,BufWritePost *.py call Flake8()
 
     augroup executable
         autocmd! BufWritePost * call SetExecutableMode()
