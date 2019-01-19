@@ -3,5 +3,7 @@
 --ignore-dir=tests.sandbox/
 --type-set
 golang=.go
---type-add
+--type-set
 proto=.proto
+--type-set
+yamake=.make
