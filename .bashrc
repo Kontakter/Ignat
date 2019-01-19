@@ -52,6 +52,10 @@ alias tx='tar xvzf'
 # aliases to vim
 alias vim_cpp='vim `find . -name "*.cpp"` `find . -name "*.h"` `find . -name "*.hxx"` `find . -name "*.cxx"` `find . -name "*.c"`'
 
+ssh_rtc() {
+    ssh $(python -c "import sys; sys.stdout.write('-'.join('$1'.split('-')[1:3]) + '.search.yandex.net')")
+}
+
 # Svn tools
 sdiff() {
     svn diff $@ | colordiff | less -SR
@@ -163,7 +167,7 @@ if [[ "$platform" == "Darwin" ]]; then
     }
 
     export OLYMP_EXAMPLE="/Users/ignat/Olympiads/example"
-    alias olymp_copy="cp '${OLYMP_EXAMPLE}/Makefile' '${OLYMP_EXAMPLE}/main.cpp' ."
+    alias olymp_copy="( if [ ! -f main.cpp ]; then cp '${OLYMP_EXAMPLE}/Makefile' '${OLYMP_EXAMPLE}/main.cpp' .; fi; )"
     alias olymp_tc_copy="cp '${OLYMP_EXAMPLE}/Makefile' . && cp '${OLYMP_EXAMPLE}/tc.cpp' main.cpp"
     alias olymp="olymp_copy && vim main.cpp"
     alias olymp_tc="olymp_tc_copy && vim main.cpp"
