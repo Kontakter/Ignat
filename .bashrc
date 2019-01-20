@@ -334,22 +334,25 @@ elif [[ "$platform" == "Linux" ]]; then
     export GCC_COLORS=""
     #export CFLAGS="-fno-color-diagnostics"
     #export CXXFLAGS="-fno-color-diagnostics"
-fi
 
-# YT variables
-export PATH="$YT_HOME/yp/python/yp/bin:$YT_HOME/cmake_build/bin:$YT_HOME/cmake_build/yt/nodejs:$PATH"
-export YT="$YT_HOME/yt"
-export PYTHONPATH="$YT_HOME/yp/python:$YT_HOME/python:$PYTHONPATH"
-export NODE_PATH="$YT_HOME/cmake_build/yt/nodejs/node_modules:$NODE_PATH"
-export WRAPPER="$YT_HOME/python/yt/wrapper"
-export YT_TESTS="$YT_HOME/tests/integration"
-export YT_PROXY="hahn.yt.yandex.net"
-export PT="$YT_HOME/scripts/process_tables"
-export GENOME_DIR="/yt/disk1/ignat/biology/binom"
+    # YT variables
+    export YT="$YT_HOME/yt"
+    export PATH="$YT_HOME/ya-build:$YT_HOME/yp/python/yp/bin:$PATH"
+    export PYTHONPATH="$YT_HOME/ya-build:$YT_HOME/yp/python:$YT_HOME/python:$PYTHONPATH"
+    export WRAPPER="$YT_HOME/python/yt/wrapper"
+    export YT_TESTS="$YT_HOME/tests/integration"
+    export YT_PROXY="hahn"
+
+    # iBinom
+    export GENOME_DIR="/yt/disk1/ignat/biology/binom"
+
+    # Modern ya svn
+    export SVN="ya svn"
+fi
 
 if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
 fi
 
-export NVM_DIR="/home/ignat/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+#export NVM_DIR="/home/ignat/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
