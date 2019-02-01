@@ -246,7 +246,11 @@ elif [[ "$platform" == "Linux" ]]; then
     export EMAIL="ignat@yandex-team.ru"
     export DEBFULLNAME="Kolesnichenko Ignat"
     export DEBCHANGE_RELEASE_HEURISTIC=changelog
-    alias dch='dch --distributor=debian'
+    if dch --version | grep 2.16 >/dev/null; then
+        alias dch='dch --distribution=debian'
+    else:
+        alias dch='dch --distributor=debian'
+    fi
 
     export BOOST_TEST_LOG_LEVEL=messages
 
