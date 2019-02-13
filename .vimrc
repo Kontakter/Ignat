@@ -344,7 +344,7 @@ set makeprg=make\ EXTRA_CFLAGS=-fno-color-diagnostic\ EXTRA_CXXFLAGS=-fno-color-
 
 function! MakeYT()
     set makeprg=$YT_HOME/yall
-    make -v | botright cwindow 7
+    make --yall-enable-dist-build -T | botright cwindow 7
 endfunction
 
 nnoremap <leader>yt :call MakeYT()<CR>
