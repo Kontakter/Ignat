@@ -150,13 +150,12 @@ set path+=$HOME/arcadia/trunk/arcadia/
 "" Turn it off, use simply pyflakes bundle
 "let g:syntastic_python_checkers = []
 "let g:pyflakes_use_quickfix = 0
-" call flake8#Flake8()
 
-let g:flake8_show_in_gutter = 0
-let g:flake8_show_in_file = 1
-let g:flake8_show_quickfix = 0
+let g:flake8_show_in_gutter=0
+let g:flake8_show_in_file=1
+let g:flake8_show_quickfix=0
 
-let g:go_version_warning = 0
+let g:go_version_warning=0
 
 
 set wildmode=longest,full
@@ -266,9 +265,11 @@ nnoremap gb :sp<CR>gf
 nnoremap <leader>gl :Glog<CR>:copen<CR>
 nnoremap <leader>gb :Gblame<CR>
 
-" Shortcuts fir quickfix window
+" Shortcuts fir quickfix and location windows
 nnoremap <leader>] :cnext<CR>
 nnoremap <leader>[ :cprevious<CR>
+nnoremap <leader>= :lnext<CR>
+nnoremap <leader>- :lprevious<CR>
 " nnoremap <leader>o :cclose<CR>
 
 " Fix syntax highlighting
