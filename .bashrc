@@ -88,7 +88,13 @@ else
     YELLOW=""
 fi
 
-export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__git_ps1)$GREEN\$$NORMAL "
+__yt_cluster() {
+    if [ -n "$YT_PROXY" ]; then
+        echo -e " (yt:$YT_PROXY)"
+    fi
+}
+
+export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__git_ps1)\$(__yt_cluster)$GREEN\$$NORMAL "
 
 cp1251_to_utf()
 {
