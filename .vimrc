@@ -209,10 +209,10 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>//ge<left><left><left>
 " Shortcut to show full path of current file
 nnoremap fp <ESC>:echo expand('%:p')<CR>
 
-" Awesome search by ack. Use :Ack instead from ack-plugin
+" Awesome search by Ag.
 " nnoremap <leader>ac :! ack <right>
-nnoremap <C-X> :Ack <cword><CR>
-inoremap <ESC><C-X> :Ack <cword><CR>
+nnoremap <C-X> :Ag <cword><CR>
+inoremap <ESC><C-X> :Ag <cword><CR>
 
 " Open vimrc
 noremap <leader>vm :vsplit ~/.vimrc<CR>
