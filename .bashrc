@@ -53,7 +53,7 @@ alias tx='tar xvzf'
 alias vim_cpp='vim `find . -name "*.cpp"` `find . -name "*.h"` `find . -name "*.hxx"` `find . -name "*.cxx"` `find . -name "*.c"`'
 
 ssh_rtc() {
-    ssh $(python -c "import sys; sys.stdout.write('-'.join('$1'.split('-')[1:3]) + '.search.yandex.net')")
+    ssh $(python3 -c "import sys; sys.stdout.write('-'.join('$1'.split('-')[1:3]) + '.search.yandex.net')")
 }
 
 # Svn tools
@@ -94,7 +94,17 @@ __yt_cluster() {
     fi
 }
 
-export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__git_ps1)\$(__yt_cluster)$GREEN\$$NORMAL "
+__arc_ps() {
+    if arc root &>/dev/null; then
+        branch=$(arc info --json | python3 -c 'import json, sys; info = json.load(sys.stdin); sys.stdout.write(info.get("branch", info.get("hash")))' 2>/dev/null)
+        if [ -n "$branch" ]; then
+            echo -e " (arc:$branch)"
+        fi
+    fi
+}
+
+export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__arc_ps)\$(__git_ps1)\$(__yt_cluster)$GREEN\$$NORMAL "
+#export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__git_ps1)\$(__yt_cluster)$GREEN\$$NORMAL "
 
 cp1251_to_utf()
 {
@@ -252,6 +262,12 @@ elif [[ "$platform" == "Linux" ]]; then
     export EMAIL="ignat@yandex-team.ru"
     export DEBFULLNAME="Kolesnichenko Ignat"
     export DEBCHANGE_RELEASE_HEURISTIC=changelog
+    # Disable due to missing dch.
+    # if dch --version | grep 2.16 &>/dev/null; then
+    #     alias dch='dch --distribution=debian'
+    # else:
+    #     alias dch='dch --distributor=debian'
+    # fi
 
     export BOOST_TEST_LOG_LEVEL=messages
 
@@ -311,7 +327,7 @@ elif [[ "$platform" == "Linux" ]]; then
     export PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no"
 
     # path to ccache
-    export PATH="/usr/lib/ccache:$PATH"
+    # export PATH="/usr/lib/ccache:$PATH"
 
     # path to pyclewn
     export PATH="/home/ignat/contrib/pyclewn:$PATH"
@@ -330,8 +346,10 @@ elif [[ "$platform" == "Linux" ]]; then
     # path to cmake
     export PATH="/home/ignat/contrib/cmake/bin:$PATH"
     
+    export ARC_HOME="/home/ignat/arc"
+
     # path to arcadia ya
-    export PATH="/home/ignat/arcadia:$PATH"
+    export PATH="$ARC_HOME:$PATH"
 
     # path to mario
     export PATH="/opt/mario:$PATH"
@@ -342,10 +360,7 @@ elif [[ "$platform" == "Linux" ]]; then
 
     # YT variables
     export YT="$YT_HOME/yt"
-    export PATH="$YT_HOME/ya-build:$YT_HOME/yp/python/yp/bin:$PATH"
-    export PYTHONPATH="$YT_HOME/ya-build:$YT_HOME/yp/python:$YT_HOME/python:$PYTHONPATH"
-    export WRAPPER="$YT_HOME/python/yt/wrapper"
-    export YT_TESTS="$YT_HOME/tests/integration"
+    export PATH="$YT_HOME/ya-build:$PATH"
     export YT_PROXY="hahn"
 
     # iBinom
@@ -361,3 +376,14 @@ fi
 
 #export NVM_DIR="/home/ignat/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+function yat()
+{
+    ARCADIA="/home/ignat/arcadia"
+    python $ARCADIA/ya make -r $ARCADIA/devtools/ya/test/programs/test_tool/bin --checkout
+    if [ $? != 0 ]; then
+        echo "Failed to build test_tool"
+        return $?
+    fi
+    python $ARCADIA/ya "$@" --test-tool-bin $ARCADIA/devtools/ya/test/programs/test_tool/bin/test_tool
+}
