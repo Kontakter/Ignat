@@ -209,7 +209,7 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>//ge<left><left><left>
 " Shortcut to show full path of current file
 nnoremap fp <ESC>:echo expand('%:p')<CR>
 
-" Awesome search by Ag.
+" Awesome search by ag.
 " nnoremap <leader>ac :! ack <right>
 nnoremap <C-X> :Ag <cword><CR>
 inoremap <ESC><C-X> :Ag <cword><CR>
@@ -342,41 +342,6 @@ inoremap z] :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " noremap <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 set makeprg=make\ EXTRA_CFLAGS=-fno-color-diagnostic\ EXTRA_CXXFLAGS=-fno-color-diagnostic
-
-function! MakeYT()
-    set makeprg=$YT_HOME/yall
-    make --yall-enable-dist-build -T | botright cwindow 7
-endfunction
-
-nnoremap <leader>yt :call MakeYT()<CR>
-
-function! TestYT(...)
-    if a:0 > 0
-        let l:tests = a:000
-    else
-        let l:tests = ['*.*']
-    endif
-    for test in l:tests
-        execute '! cd $YT_HOME/cmake_build && '.
-                \ ' ./bin/unittester-ytlib --gtest_filter='.test
-    endfor
-endfunction
-
-function! DebugUnittest()
-    Cfile ~/yt/cmake_build/bin/unittester
-    Crun
-endfunction
-
-function! DebugMaster()
-    Cfile ~/yt/cmake_build/bin/ytserver
-    Crun --config master_config.yson --master --port 8001
-endfunction
-
-function! MakeClang()
-    make -C $HOME/contrib/clang/build -j16 | botright cwindow 7
-endfunction
-
-nnoremap <leader>cl :call MakeClang()<CR>
 
 function! SetBreakpoint()
     let number = line('.')
@@ -530,18 +495,20 @@ iabbrev pacakges packages
 " Section: vundle
 " {{{
  set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+ call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ycm-core/YouCompleteMe'
 
-Bundle 'Valloric/YouCompleteMe'
+call vundle#end()
 
-let g:ycm_global_ycm_extra_conf = '/home/ignat/.ycm_extra_conf.py'
+" TODO: Fix it within arc/
+" let g:ycm_global_ycm_extra_conf = '/home/ignat/yt/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
-
 let g:ycm_show_diagnostics_ui = 0
+let g:ycm_log_level = 'debug'
 
 " }}}
 
@@ -567,8 +534,9 @@ if has("autocmd")
     " Proto syntax
     autocmd! BufNewFile,BufRead *.proto set syntax=proto
 
+    " TODO: fix it
     " Python flake8 plugin.
-    autocmd! BufNewFile,BufRead,BufWritePost *.py call Flake8()
+    " autocmd! BufNewFile,BufRead,BufEnter,BufWritePost *.py call Flake8()
 
     augroup executable
         autocmd! BufWritePost * call SetExecutableMode()
