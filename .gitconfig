@@ -21,7 +21,7 @@
     psh = push origin master
     pl = pull origin master
     sb = submodule update --init --recursive
-    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%cn>%Creset' --abbrev-commit
+    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ai) %C(bold blue)<%cn,%an>%Creset' --abbrev-commit
 
 [branch]
     autosetuprebase = always
