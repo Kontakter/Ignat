@@ -1,6 +1,8 @@
 --ignore-dir=node_modules/
 --ignore-dir=build/
 --ignore-dir=tests.sandbox/
+--ignore-dir=__pycache__/
+--ignore-dir=.pytest_cache/
 --type-set
 golang=.go
 --type-set
