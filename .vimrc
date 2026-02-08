@@ -1,8 +1,39 @@
-" Section: options
+" Section: vim-plug
 " {{{
 
-" Turn on pathogen plugin
-call pathogen#infect()
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin('~/.vim/plugged')
+
+" Plugins
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'preservim/nerdtree'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
+Plug 'tpope/vim-unimpaired'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
+call plug#end()
+
+" }}}
+
+" Section: options
+" {{{
 
 " This setting prevents vim from emulating the original vi's
 " bugs and limitations.
@@ -42,7 +73,7 @@ set laststatus=2
 " Statusline
 set statusline=
 set statusline+=%.30F "Full path to filename
-set statusline+=%{fugitive#statusline()} "Git branch info
+" set statusline+=%{fugitive#statusline()} "Git branch info
 set statusline+=%h%m%r%w " file flags
 " %y -- file content type (latex, python, ...)
 "%{&ff} -- file type (dos, unix, mac)
@@ -62,8 +93,7 @@ set background=dark
 set autowrite
 
 " Highlight very long lines and trailing spaces
-" highlight BAD_FORMATTING ctermbg=red
-" autocmd Syntax * syntax match BAD_FORMATTING /\s\+$\|\t\|.\{79\}/ containedin=ALL
+highlight OverLength ctermbg=yellow ctermfg=black guibg=yellow guifg=black
 
 " Allow backspace to delete all symbols
 set backspace=indent,eol,start
@@ -157,6 +187,16 @@ let g:flake8_show_quickfix=0
 
 let g:go_version_warning=0
 
+" Python-mode configuration
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_on_fly = 0
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+let g:pymode_rope = 0
+let g:pymode_options_max_line_length = 120
+let g:pymode_lint_ignore = 'E501'  " Ignore line too long errors (we handle it with yellow highlight)
+let g:pymode_lint_signs = 1
+let g:pymode_virtualenv = 1
 
 set wildmode=longest,full
 set wildmenu
@@ -271,6 +311,19 @@ nnoremap <leader>[ :cprevious<CR>
 nnoremap <leader>= :lnext<CR>
 nnoremap <leader>- :lprevious<CR>
 " nnoremap <leader>o :cclose<CR>
+
+" Toggle location list (for python-mode errors)
+function! ToggleLocationList()
+    let l:own = winnr()
+    lwindow
+    let l:cwn = winnr()
+    if l:cwn == l:own
+        if &buftype == 'quickfix'
+            lclose
+        endif
+    endif
+endfunction
+nnoremap <leader>lo :call ToggleLocationList()<CR>
 
 " Fix syntax highlighting
 nnoremap <leader>hg :syntax sync fromstart<CR>
@@ -492,18 +545,8 @@ endif
 iabbrev pacakges packages
 " }}}
 
-" Section: vundle
+" Section: YouCompleteMe
 " {{{
- set rtp+=~/.vim/bundle/vundle/
- call vundle#begin()
-
-" let Vundle manage Vundle
-" required!
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'ycm-core/YouCompleteMe'
-
-call vundle#end()
-
 " TODO: Fix it within arc/
 " let g:ycm_global_ycm_extra_conf = '/home/ignat/yt/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
@@ -533,6 +576,9 @@ if has("autocmd")
 
     " Proto syntax
     autocmd! BufNewFile,BufRead *.proto set syntax=proto
+
+    " Terraform syntax
+    autocmd! BufNewFile,BufRead *.tf set syntax=hcl
 
     " TODO: fix it
     " Python flake8 plugin.
@@ -576,6 +622,11 @@ if has("autocmd")
     " Turn on nice python highlight
     " let python_highlight_all = 1
     autocmd FileType python syn keyword pythonDecorator True None False self
+
+    " Force yellow highlight for long lines (override python-mode)
+    autocmd BufWinEnter *.py call clearmatches()
+    autocmd BufWinEnter *.py call matchadd('OverLength', '\%>120v.\+', -1)
+    autocmd VimEnter * highlight OverLength ctermbg=yellow ctermfg=black guibg=yellow guifg=black
 endif
 
 " Function! CmdLine(str)
