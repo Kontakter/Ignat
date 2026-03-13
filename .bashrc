@@ -103,7 +103,13 @@ __arc_ps() {
     fi
 }
 
-export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__arc_ps)\$(__git_ps1)\$(__yt_cluster)$GREEN\$$NORMAL "
+__aws_profile() {
+    if [ -n "$AWS_PROFILE" ]; then
+        echo -e "[aws:$AWS_PROFILE]"
+    fi
+}
+
+export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__arc_ps)\$(__git_ps1)\$(__yt_cluster)\$(__aws_profile)$GREEN\$$NORMAL "
 #export PS1="$RED\u@\h:$NORMAL\w$YELLOW\$(__git_ps1)\$(__yt_cluster)$GREEN\$$NORMAL "
 
 cp1251_to_utf()
@@ -258,17 +264,6 @@ elif [[ "$platform" == "Linux" ]]; then
         alias egrep='egrep --color=auto'
     fi
 
-    # Variables for use debian
-    export EMAIL="ignat@yandex-team.ru"
-    export DEBFULLNAME="Kolesnichenko Ignat"
-    export DEBCHANGE_RELEASE_HEURISTIC=changelog
-    # Disable due to missing dch.
-    # if dch --version | grep 2.16 &>/dev/null; then
-    #     alias dch='dch --distribution=debian'
-    # else:
-    #     alias dch='dch --distributor=debian'
-    # fi
-
     export BOOST_TEST_LOG_LEVEL=messages
 
     # Aliases for apt-get
@@ -279,17 +274,6 @@ elif [[ "$platform" == "Linux" ]]; then
 
     # alias for ack
     alias ack="ack-grep"
-
-    # Some popular directories (maps project)
-    export PYMOD="/home/ignat/code/maps/pymod/"
-    export API="/home/ignat/code/maps/pymod/yandex/maps/analyzer/api/"
-    export MR="/home/ignat/code/maps/pymod/yandex/maps/mapreduce/"
-    export QUALITY="/home/ignat/code/maps/fastcgi/analyzer/quality/"
-    export PART="/home/ignat/code/maps/fastcgi/analyzer/graph_partition/"
-
-    # Analyzer variables
-    #export ANALYZER="/home/ignat/mapscore/fastcgi/analyzer/"
-    #export ANALYZER_MODE=static
 
     # tmux completion and restore
     refresh_tmux() {
@@ -311,8 +295,6 @@ elif [[ "$platform" == "Linux" ]]; then
     # For run and debug yt
     export LD_LIBRARY_PATH=/home/ignat/contrib/gperf/lib:$LD_LIBRARY_PATH
 
-    export YT_HOME="/home/ignat/yt"
-
     grep_kill() {
         set -u
         for pid in `ps aux | grep "$1" | awk '{print $2}'`; do
@@ -326,12 +308,6 @@ elif [[ "$platform" == "Linux" ]]; then
     export GTEST_COLOR=1
     export PDSH_SSH_ARGS_APPEND="-o StrictHostKeyChecking=no"
 
-    # path to ccache
-    # export PATH="/usr/lib/ccache:$PATH"
-
-    # path to pyclewn
-    export PATH="/home/ignat/contrib/pyclewn:$PATH"
-
     # path to rake
     export PATH="/var/lib/gems/1.8/bin:$PATH"
 
@@ -340,50 +316,28 @@ elif [[ "$platform" == "Linux" ]]; then
     export PATH="/home/ignat/clang/build/Release+Asserts/bin:$PATH"
     export PATH="/home/ignat/contrib/llvm/build/Debug+Asserts/bin:$PATH"
 
-    # path to ninja
-    export PATH="/home/ignat/contrib/ninja:$PATH"
-
-    # path to cmake
-    export PATH="/home/ignat/contrib/cmake/bin:$PATH"
-    
-    export ARC_HOME="/home/ignat/arc"
-
-    # path to arcadia ya
-    export PATH="$ARC_HOME:$PATH"
-
-    # path to mario
-    export PATH="/opt/mario:$PATH"
-
     export GCC_COLORS=""
     #export CFLAGS="-fno-color-diagnostics"
     #export CXXFLAGS="-fno-color-diagnostics"
 
-    # YT variables
-    export YT="$YT_HOME/yt"
-    export PATH="$YT_HOME/ya-build:$PATH"
-    export YT_PROXY="hahn"
+    export PATH="$HOME/ytsaurus:$PATH"
 
-    # iBinom
-    export GENOME_DIR="/yt/disk1/ignat/biology/binom"
+    source "$HOME/.local/bin/env"
+    source "$HOME/.cargo/env"
 
-    # Modern ya svn
-    export SVN="ya svn"
+    function yat()
+    {
+        ARCADIA="/home/ignat/arcadia"
+        python $ARCADIA/ya make -r $ARCADIA/devtools/ya/test/programs/test_tool/bin --checkout
+        if [ $? != 0 ]; then
+            echo "Failed to build test_tool"
+            return $?
+        fi
+        python $ARCADIA/ya "$@" --test-tool-bin $ARCADIA/devtools/ya/test/programs/test_tool/bin/test_tool
+    }
 fi
 
 if [ -f ~/.yt/completion ]; then
     source ~/.yt/completion
 fi
 
-#export NVM_DIR="/home/ignat/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-function yat()
-{
-    ARCADIA="/home/ignat/arcadia"
-    python $ARCADIA/ya make -r $ARCADIA/devtools/ya/test/programs/test_tool/bin --checkout
-    if [ $? != 0 ]; then
-        echo "Failed to build test_tool"
-        return $?
-    fi
-    python $ARCADIA/ya "$@" --test-tool-bin $ARCADIA/devtools/ya/test/programs/test_tool/bin/test_tool
-}
